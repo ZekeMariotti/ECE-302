@@ -20,7 +20,7 @@ LinkedList<T>::~LinkedList()
   delete listEnd;
 }
 
-///copy constructor
+//copy constructor
 template <typename T>
 LinkedList<T>::LinkedList(const LinkedList<T>& x)
 {
@@ -157,7 +157,7 @@ bool LinkedList<T>::insert(std::size_t position, const T& item)
   if (position==1)
   {
     //Insert node/item at position one
-    oldStart=listStart;
+    Node<T>* oldStart=listStart;
     listStart=new Node<T>;
     listStart->setNext(oldStart);
     listStart->setItem(item);
@@ -192,7 +192,7 @@ bool LinkedList<T>::insert(std::size_t position, const T& item)
   currentNode=new Node<T>;
 
   //Set item
-  currentNode.setItem(item);
+  currentNode->setItem(item);
 
   //Connect Nodes
   beforeNode->setNext(currentNode);
