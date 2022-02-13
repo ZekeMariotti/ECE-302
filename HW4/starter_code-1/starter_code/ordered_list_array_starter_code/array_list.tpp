@@ -68,31 +68,72 @@ bool ArrayList<T>::isEmpty() const{
 // return current length of the list
 template <typename T>
 std::size_t ArrayList<T>::getLength() const{
-  return 0;
+  //Return count
+  return count;
 }
 
 // insert item at position in the list using 1-based indexing
 template <typename T>
 bool ArrayList<T>::insert(std::size_t position, const T& item){
-  return false;
+  //check if position zero/negative
+  if (position<=0)
+    return false;
+
+  //check if position is too large
+  if (position>count)
+    listResize();
+  
+  //shift all items
+  for (int i=count; i>position-1; i--)
+  {
+    *(listPtr+i)=*(listPtr+i-1); 
+  }
+
+  //set item at position
+  *(listPtr+position-1)=item;
+
+  //increase count
+  count++;
+  
+  return true;
 }
 
 // remove item at position in the list using 1-based indexing
 template <typename T>
-bool ArrayList<T>::remove(std::size_t position){
-  return false;
+bool ArrayList<T>::remove(std::size_t position){  
+  //test if position is zero/negative
+  if (position<=0)
+    return false;
+
+  //shift all items
+  for (int i=position-1; i<=count-1; i++)
+  {
+    *(listPtr+i)=*(listPtr+i+1);
+  }
+
+  //decrease count
+  count--;
+
+  return true;
 }
 
 // remove all items from the list
 template <typename T>
-void ArrayList<T>::clear() {}
+void ArrayList<T>::clear() {
+  //clear all items by setting count to 0
+  count=0;
+}
 
 // get a copy of the item at position using 1-based indexing
 template <typename T>
 T ArrayList<T>::getEntry(std::size_t position) const {
-  return T();
+  //return item at position
+  return *(listPtr+position-1); 
 }
 
 // set the value of the item at position using 1-based indexing
 template <typename T>
-void ArrayList<T>::setEntry(std::size_t position, const T& newValue) {}
+void ArrayList<T>::setEntry(std::size_t position, const T& newValue) {
+  //set item
+  *(listPtr+position-1)=newValue;
+}
