@@ -5,7 +5,8 @@
 
 template class LinkedList<int>;
 
-TEST_CASE( "isEmpty Test", "[LinkedList]" ) {
+TEST_CASE( "Constructor and isEmpty Test", "[LinkedList]" ) {
+    //create List object
     LinkedList<int> list1;
     LinkedList<int> list2=list1;
 
@@ -13,7 +14,40 @@ TEST_CASE( "isEmpty Test", "[LinkedList]" ) {
     REQUIRE(list1.isEmpty());
 }
 
-TEST_CASE("length test", "[LinkedList]"){
+TEST_CASE("length, getEntry, and insert test", "[LinkedList]"){
+    //create List object
+    LinkedList<int> list1;
+
+    //Insert 10 items
+    for (int i=1; i<=10; i++)
+    {
+        list1.insert(i, i);
+    }
+
+    REQUIRE(list1.getEntry(5)==5);
+
+    //Require list1 has length 10
+    REQUIRE(list1.getLength()==10);
+
+    //Insert an item at position 5 
+    list1.insert(5, 1);
+
+    //Require that length increased to 11
+    REQUIRE(list1.getLength()==11);
+
+    //copy list1 to list 2
+    LinkedList<int> list2;
+    list2=list1;
+
+    //require length of list2 to be same as list1
+    REQUIRE(list2.getLength()==11);
+
+    //Require each item in list2 to be the same as list1
+    for (int i=1; i<list2.getLength(); i++)
+    {
+        REQUIRE(list2.getEntry(i)==list1.getEntry(i));
+    }
+
 
 }
 

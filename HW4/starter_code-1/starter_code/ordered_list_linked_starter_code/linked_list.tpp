@@ -1,32 +1,37 @@
 #include "linked_list.hpp"
+#include <iostream>
 
 // default constructor
 template <typename T>
 LinkedList<T>::LinkedList()
 {
-  //set both pointers and their next node to null
+  //set both pointers to NULL
   listStart=NULL;
-  listEnd=NULL;
-  listStart->setNext(NULL);
-  listEnd->setNext(NULL);
 }
 
 //destructor
 template <typename T>
 LinkedList<T>::~LinkedList()
 {
-  //delete start and end pointers
+  if (listStart==NULL)
+    return;
+  //delete start pointer
   delete listStart;
-  delete listEnd;
 }
 
 //copy constructor
 template <typename T>
 LinkedList<T>::LinkedList(const LinkedList<T>& x)
 {
+  //if x is empty, make calling object empty
+  if (x.isEmpty())
+  {
+    listStart=NULL;
+    return;
+  }
+
   //create new pointers
   listStart=new Node<T>;
-  listEnd=new Node<T>;
 
   //Create pointer to loop through list and to copy data
   Node<T>* loop=x.listStart;
@@ -40,9 +45,6 @@ LinkedList<T>::LinkedList(const LinkedList<T>& x)
 
      //Node to hold pointer to new node
      Node<T>* newNode=new Node<T>;
-
-     //Set end node
-     listEnd=data;
 
      //increment data and loop to their next nodes
      data->setNext(newNode);
@@ -55,34 +57,22 @@ LinkedList<T>::LinkedList(const LinkedList<T>& x)
 template <typename T>
 void LinkedList<T>::swap(LinkedList<T>& x, LinkedList<T>& y)
 {
-  //Create new pointers to hold data 
+  //Create new pointer to hold data 
   Node<T>* newStart=x.listStart;
-  Node<T>* newEnd=x.listEnd;
 
-  //switch start pointers and end pointers
+  //switch start pointers 
   x.listStart=y.listStart;
-  x.listEnd=y.listEnd;
   
   //Switch y pointers to new pointers
   y.listStart=newStart;
-  y.listEnd=newEnd;
-
-  //delete new pointers
-  delete newStart;
-  delete newEnd;
 }
 
 //copy assignment
 template <typename T>
 LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& x)
-{
-  //delete old pointers
-  delete listStart;
-  delete listEnd;
- 
+{ 
   //create new pointers
   listStart=new Node<T>;
-  listEnd=new Node<T>;
 
   //Create pointer to loop through list and to copy data
   Node<T>* loop=x.listStart;
@@ -96,9 +86,6 @@ LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& x)
 
      //Node to hold pointer to new node
      Node<T>* newNode=new Node<T>;
-
-     //Set end node
-     listEnd=data;
 
      //increment data and loop to their next nodes
      data->setNext(newNode);
@@ -139,6 +126,7 @@ std::size_t LinkedList<T>::getLength() const
   while(currentNode->getNext()!=NULL)
   {
     length++;
+    currentNode=currentNode->getNext();
   }
 
   //Return length variable
@@ -157,11 +145,16 @@ bool LinkedList<T>::insert(std::size_t position, const T& item)
   if (position==1)
   {
     //Insert node/item at position one
-    Node<T>* oldStart=listStart;
+    Node<T>* oldStart=listStart; 
     listStart=new Node<T>;
-    listStart->setNext(oldStart);
     listStart->setItem(item);
-    listEnd=oldStart;
+    
+    //check for null
+    if(oldStart!=NULL)
+    {
+       listStart->setNext(oldStart);
+    }
+    
     return true;
   }
   
@@ -172,13 +165,13 @@ bool LinkedList<T>::insert(std::size_t position, const T& item)
   int index=1;
 
   //loop until index is reached
-  while(index!=position-1)
+  while(index<position-1)
   {
     currentNode=currentNode->getNext();
     index++;
 
   //If position is larger than size of list
-    if(currentNode->getNext()==NULL)
+    if(currentNode==NULL)
       return false;
   }
 
@@ -192,15 +185,14 @@ bool LinkedList<T>::insert(std::size_t position, const T& item)
   currentNode=new Node<T>;
 
   //Set item
-  currentNode->setItem(item);
+  currentNode->setItem(item); 
 
   //Connect Nodes
   beforeNode->setNext(currentNode);
-  currentNode->setNext(afterNode);
 
-  //Check if after node is null, (position is last index in list)
-  if (afterNode==NULL)
-    listEnd=currentNode;
+  //check if afternode exists/==NULL
+  if(afterNode!=NULL)
+    currentNode->setNext(afterNode);
 
   return true;
 }
@@ -224,8 +216,21 @@ void LinkedList<T>::clear()
 template <typename T>
 T LinkedList<T>::getEntry(std::size_t position) const
 {
-  //TODO
-  return T();
+  //variable to hold item
+  T item;
+  
+  //variable to hold node pointer
+  Node<T>* currentNode=listStart;
+
+  //loop until position
+  for (int i=1; i<position; i++)
+    currentNode=currentNode->getNext();
+
+  //set item
+  item=currentNode->getItem();
+  
+  //return item
+  return item;
 }
 
 // set the value of the item at position using 1-based indexing

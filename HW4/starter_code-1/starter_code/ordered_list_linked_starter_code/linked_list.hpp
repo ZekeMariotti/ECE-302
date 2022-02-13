@@ -48,8 +48,7 @@ public:
 private:
 
   //Create pointers for beginning and end of linked list
-  Node<T> *listStart;
-  Node<T> *listEnd;  
+  Node<T> *listStart; 
 };
 
 #include "linked_list.tpp"
