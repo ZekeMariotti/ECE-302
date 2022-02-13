@@ -50,7 +50,7 @@ private:
   int listSize=10;
 
   // variable to hold count position
-  int count=1;
+  int count=0;
 
   // member function used to resize a list
   void listResize(void){

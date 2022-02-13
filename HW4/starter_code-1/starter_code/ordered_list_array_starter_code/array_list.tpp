@@ -2,25 +2,64 @@
 
 // default constructor
 template <typename T>
-ArrayList<T>::ArrayList() {}
+ArrayList<T>::ArrayList() {
+  listPtr=NULL;
+}
 
 // destructor
 template <typename T>
-ArrayList<T>::~ArrayList() {}
+ArrayList<T>::~ArrayList() {
+  delete [] listPtr;
+}
 
 // copy constructor
 template <typename T>
-ArrayList<T>::ArrayList(const ArrayList & rhs){}
+ArrayList<T>::ArrayList(const ArrayList & rhs){
+  //allocate memory for listPtr of same size as rhs
+  listPtr=new T[rhs.listSize];
+
+  //copy data
+  for (int i=0; i<=rhs.count; i+++)
+  {
+    *(listPtr+i)=*(rhs.listPtr+i);
+  }
+
+  //set count and list size
+  count=rhs.count;
+  listSize=rhs.listSize;
+}
 
 // copy assignment
 template <typename T>
 ArrayList<T> & ArrayList<T>::operator=(const ArrayList & rhs){
+  //delete old listPtr
+  delete [] listPtr;
+  
+  //allocate memory for listPtr of same size as rhs
+  listPtr=new T[rhs.listSize];
+
+  //copy data
+  for (int i=0; i<=rhs.count; i+++)
+  {
+    *(listPtr+i)=*(rhs.listPtr+i);
+  }
+
+  //set count and list size
+  count=rhs.count;
+  listSize=rhs.listSize;
+
+  //return calling object ptr
   return *this;
 }
 
 // determine if a list is empty
 template <typename T>
 bool ArrayList<T>::isEmpty() const{
+  //check if count is zero
+  if (count==0)
+    return true
+  
+  //return false if count isn't zero
   return false;
 }
 
