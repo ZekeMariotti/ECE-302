@@ -6,19 +6,21 @@
 
 #IncludeRegexTransform: 
 
-/home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/abstract_list.hpp
+/home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/abstract_list.hpp
 
-/home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/array_list.hpp
+/home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/array_list.hpp
 abstract_list.hpp
-/home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/abstract_list.hpp
+/home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/abstract_list.hpp
 array_list.tpp
-/home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/array_list.tpp
+/home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/array_list.tpp
 
-/home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/array_list.tpp
+/home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/array_list.tpp
 array_list.hpp
-/home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/array_list.hpp
+/home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/array_list.hpp
+iostream
+-
 
-/home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/catch.hpp
+/home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/catch.hpp
 sstream
 -
 algorithm
@@ -196,7 +198,7 @@ algorithm
 map
 -
 Foundation/Foundation.h
-/home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/Foundation/Foundation.h
+/home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/Foundation/Foundation.h
 map
 -
 sstream
@@ -262,9 +264,9 @@ cfloat
 cstdio
 -
 
-/home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/test_array_list.cpp
+/home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/test_array_list.cpp
 catch.hpp
-/home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/catch.hpp
+/home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/catch.hpp
 array_list.hpp
-/home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/array_list.hpp
+/home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/array_list.hpp
 

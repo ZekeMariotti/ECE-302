@@ -1,9 +1,11 @@
 #include "array_list.hpp"
+#include <iostream>
 
 // default constructor
 template <typename T>
 ArrayList<T>::ArrayList() {
-  listPtr=NULL;
+  //allocate memory for listPtr
+  listPtr=new T[listSize];
 }
 
 // destructor
@@ -19,7 +21,7 @@ ArrayList<T>::ArrayList(const ArrayList & rhs){
   listPtr=new T[rhs.listSize];
 
   //copy data
-  for (int i=0; i<=rhs.count; i+++)
+  for (int i=0; i<=rhs.count-1; i++)
   {
     *(listPtr+i)=*(rhs.listPtr+i);
   }
@@ -39,7 +41,7 @@ ArrayList<T> & ArrayList<T>::operator=(const ArrayList & rhs){
   listPtr=new T[rhs.listSize];
 
   //copy data
-  for (int i=0; i<=rhs.count; i+++)
+  for (int i=0; i<=rhs.count; i++)
   {
     *(listPtr+i)=*(rhs.listPtr+i);
   }
@@ -57,7 +59,7 @@ template <typename T>
 bool ArrayList<T>::isEmpty() const{
   //check if count is zero
   if (count==0)
-    return true
+    return true;
   
   //return false if count isn't zero
   return false;

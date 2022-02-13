@@ -7,16 +7,20 @@
 template class ArrayList<int>;
 
 TEST_CASE( "constructor, copy constructor, destructor, and copy assignment Test", "[ArrayList]" ) {
-
+  //Create list objects, call copy constructor and copy assignment
   ArrayList<int> list1;
   ArrayList<int> list2=list1;
   ArrayList<int> list3;
   list3=list2;
 
   //Require objects created and functions called with no errors
-  REQUIRE(true):
+  REQUIRE(true);
 }
 
-TEST_CASE(" test", "ArrayList]" ) {
-  
+TEST_CASE( "isEmpty, Test", "ArrayList]" ) {
+  //create list object
+  ArrayList<int> list1;
+
+  //Require default list1 is empty
+  REQUIRE(list1.isEmpty()==true);
 }

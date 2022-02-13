@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code
+CMAKE_SOURCE_DIR = /home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code
+CMAKE_BINARY_DIR = /home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code
 
 # Utility rule file for submission.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/or
 include CMakeFiles/submission.dir/progress.make
 
 CMakeFiles/submission:
-	/usr/bin/cmake -E tar cfv /home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/hw4_list_array.zip --format=zip test_array_list.cpp array_list.hpp array_list.tpp
+	/usr/bin/cmake -E tar cfv /home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/hw4_list_array.zip --format=zip test_array_list.cpp array_list.hpp array_list.tpp
 
 submission: CMakeFiles/submission
 submission: CMakeFiles/submission.dir/build.make
@@ -71,6 +71,6 @@ CMakeFiles/submission.dir/clean:
 .PHONY : CMakeFiles/submission.dir/clean
 
 CMakeFiles/submission.dir/depend:
-	cd /home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code /home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code /home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code /home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code /home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/CMakeFiles/submission.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code /home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code /home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code /home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code /home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/CMakeFiles/submission.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/submission.dir/depend
 

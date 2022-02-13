@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/test_array_list.cpp" "/home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/CMakeFiles/test_array_list.dir/test_array_list.cpp.o"
+  "/home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/test_array_list.cpp" "/home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/CMakeFiles/test_array_list.dir/test_array_list.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

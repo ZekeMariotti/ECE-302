@@ -1,4 +1,4 @@
-# Install script for directory: /home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code
+# Install script for directory: /home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/zeke/Desktop/ece0302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/zeke/Desktop/ece0302/ECE-302/HW4/starter_code-1/starter_code/ordered_list_array_starter_code/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
