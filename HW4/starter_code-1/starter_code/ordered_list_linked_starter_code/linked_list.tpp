@@ -201,7 +201,45 @@ bool LinkedList<T>::insert(std::size_t position, const T& item)
 template <typename T>
 bool LinkedList<T>::remove(std::size_t position)
 {
-  //TODO
+  //check for invalid position
+  if(position<=0)
+    return false;
+
+  //Check if position is 1
+  if(position==1)
+    listStart=listStart->getNext();
+
+  //Node pointer to hold current node
+  Node<T>* currentNode=listStart;
+
+  //loop through until position
+  for (int i=1; i<position-1; i++)
+  {
+    currentNode=currentNode->getNext();
+  }
+
+  //check for position higher than list size
+  if(currentNode->getNext()==NULL)
+    return false;
+
+  //create pointer to hold previous node
+  Node<T>* previousNode=currentNode;
+
+  //get position pointer
+  currentNode=currentNode->getNext();
+
+  if (currentNode->getNext()==NULL)
+  {
+    //if the item at position is the last item, make the previousNode point to nothing/NULL
+    previousNode->setNext(NULL);
+  }
+  else
+  {
+    //Remove Node by making previousNode point to the node after the positions
+    previousNode->setNext(currentNode->getNext());
+  }
+
+  //Return True
   return true;
 }
 
@@ -209,7 +247,8 @@ bool LinkedList<T>::remove(std::size_t position)
 template <typename T>
 void LinkedList<T>::clear()
 {
-  //TODO
+  //Reset listStart
+  listStart=NULL;
 }
 
 // get a copy of the item at position using 1-based indexing
@@ -237,5 +276,23 @@ T LinkedList<T>::getEntry(std::size_t position) const
 template <typename T>
 void LinkedList<T>::setEntry(std::size_t position, const T& newValue)
 {
-  //TODO
+  //check for invalid position
+  if(position<=0)
+    return;
+  
+  //variable to hold currentNode for looping
+  Node<T>* currentNode=listStart;
+
+  //loop through list until position is reached
+  for(int i=1; i<position; i++)
+  {
+    currentNode=currentNode->getNext();
+  }
+
+  //check for invalid position
+  if(currentNode==NULL)
+    return;
+
+  //set item at position
+  currentNode->setItem(newValue);
 }

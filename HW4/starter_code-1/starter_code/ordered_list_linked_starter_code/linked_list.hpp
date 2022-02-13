@@ -47,7 +47,7 @@ public:
 
 private:
 
-  //Create pointers for beginning and end of linked list
+  //Create pointers for beginning
   Node<T> *listStart; 
 };
 
