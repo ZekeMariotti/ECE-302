@@ -1,0 +1,6 @@
+/home/zeke/Desktop/ECE302/ECE-302/Project2/p2_starter_code-3/p2_starter_code/CMakeFiles/rebuild_cache.dir
+/home/zeke/Desktop/ECE302/ECE-302/Project2/p2_starter_code-3/p2_starter_code/CMakeFiles/submission.dir
+/home/zeke/Desktop/ECE302/ECE-302/Project2/p2_starter_code-3/p2_starter_code/CMakeFiles/edit_cache.dir
+/home/zeke/Desktop/ECE302/ECE-302/Project2/p2_starter_code-3/p2_starter_code/CMakeFiles/test.dir
+/home/zeke/Desktop/ECE302/ECE-302/Project2/p2_starter_code-3/p2_starter_code/CMakeFiles/FindPalindrome-main.dir
+/home/zeke/Desktop/ECE302/ECE-302/Project2/p2_starter_code-3/p2_starter_code/CMakeFiles/FindPalindrome-tests.dir
