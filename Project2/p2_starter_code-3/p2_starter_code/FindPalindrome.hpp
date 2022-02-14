@@ -3,13 +3,19 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
+#include <cctype>
 
 class FindPalindrome{
 
 private:
 	// private stuff that you define and implement goes here...
-	//pointer to hold array of words
-	string* arrayPtr;
+
+	//pointer to hold vector of words
+	std::vector<std::string> currentCandidateVector;
+	std::vector<std::string> currentStringVector;
+	std::vector<std::vector<std::string>> palindromeVector;
+	int palindromeCount;
 	
 	// private stuff that you are given or is specified in the project
 	// description...
@@ -20,6 +26,7 @@ private:
 	    a grade of zero for the project. */
 	void recursiveFindPalindromes(std::vector<std::string> currentCandidateVector, 
 			   	                  std::vector<std::string> currentStringVector);
+
 	
 	/** function to see if a string is a palindrome (provided).
 	  You may use the provided function, write your own, or use one of the billions
@@ -28,17 +35,21 @@ private:
 	  inefficient). You may change the signature of this function. */
 	bool isPalindrome(std::string currentString) const;
 	
+
 public:
 	/** Constructor for the FindPalindrome object. */
 	FindPalindrome();
 
+
 	/** Destroys object and frees any memory allocated by object. */
 	~FindPalindrome();
+
 
 	/** Returns the current number of sentence palindromes in the
 	    FindPalindrome instance.
 	   @return The integer number of palindromes in the instance. */
 	int number() const;
+
 
 	/** Removes all words from this instance. The internal list
 	   of sentence palindromes is cleared and any internal data
@@ -46,6 +57,7 @@ public:
 	 @post  The instance contains no words, and the number of
 	   sentence palindromes is 0. */
 	 void clear();
+
 	 
 	/** Adds a new string to this FindPalindrome instance and computes the
 	   number of palindrome sentences possible. Note that the new string must
@@ -56,6 +68,7 @@ public:
 	   @param value  The string to add to the instance of FindPalindrome.
 	   @return  True if addition was successful, or false if not. */
 	bool add(const std::string & value);
+
 	
 	/** Adds a new vector of strings to this FindPalindrome instance and
 	   computes the number of palindrome sentences possible. Note: You may
@@ -70,6 +83,7 @@ public:
 	    FindPalindrome.
 	   @return  True if addition was successful, or false if not. */
 	bool add(const std::vector<std::string> & stringVector);
+
 	
 	/** Cut test #1 to see if a palindrome is possible, if not, no need to go any 
             further. See the project description for how this method is to be used.
@@ -77,6 +91,7 @@ public:
 	   test to see if they could be reordered to form a sentence palindrome.
 	   @return  True if the vector passes the test, false otherwise. */
 	bool cutTest1(const std::vector<std::string> & stringVector);
+
 
 	/** Cut test #2 to see if a palindrome is possible, if not, no need to go any 
             further. We don't know which vector of strings has the fewer number
@@ -93,6 +108,7 @@ public:
 	   @return  True if the vector passes the test, false otherwise. */
 	bool cutTest2(const std::vector<std::string> & stringVector1, 
 			      const std::vector<std::string> & stringVector2);
+
 
 	/** Returns a vector of vectors containing all palindromes. Each
 	    palindrome is returned as a vector of strings, where the strings include

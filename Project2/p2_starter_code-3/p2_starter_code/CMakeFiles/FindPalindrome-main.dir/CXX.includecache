@@ -23,10 +23,8 @@ string
 -
 vector
 -
-
-/home/zeke/Desktop/ECE302/ECE-302/Project2/p2_starter_code-3/p2_starter_code/FindPalindrome_main.cpp
 iostream
 -
-FindPalindrome.hpp
-/home/zeke/Desktop/ECE302/ECE-302/Project2/p2_starter_code-3/p2_starter_code/FindPalindrome.hpp
+cctype
+-
 
