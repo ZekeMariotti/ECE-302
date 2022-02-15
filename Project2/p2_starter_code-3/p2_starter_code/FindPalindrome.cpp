@@ -26,14 +26,12 @@ static void convertToLowerCase(string & value)
 void FindPalindrome::recursiveFindPalindromes(vector<string>
         candidateStringVector, vector<string> currentStringVector)
 {
-	cout << currentStringVector.size() << " " << candidateStringVector.size() << endl;
 	// base case
 	if (candidateStringVector.size()==0)
-	{
+	{ 					//for (int i=0; i<=currentStringVector.size()-1; i++) {cout << currentStringVector[i] << " ";} cout << endl;
 		//string to hold full vector as a string, and string to hold each value from vector
 		string fullSentence;
 		string fromVector;
-		cout << "iftest\n";
 
 		//copy strings to fullSentence
 		for(int i=0; i<=currentStringVector.size()-1; i++)
@@ -61,8 +59,6 @@ void FindPalindrome::recursiveFindPalindromes(vector<string>
 		//vector used to hold strings after popback
 		vector<string> secondCandidate=candidateStringVector;
 
-	cout << currentStringVector.size() << "\n"; 
-
 		//Recursive calls
 		for (int i=0; i<=candidateStringVector.size()-1; i++)
 		{
@@ -70,7 +66,7 @@ void FindPalindrome::recursiveFindPalindromes(vector<string>
 			currentStringVector.push_back(candidateStringVector[i]); 
 			secondCandidate.erase(secondCandidate.begin()+i);
 			recursiveFindPalindromes(secondCandidate, currentStringVector); 
-			currentStringVector.erase(currentStringVector.begin()+i);
+			currentStringVector.pop_back();
 			secondCandidate.insert(secondCandidate.begin()+i, candidateStringVector[i]);
 		}
 	}
@@ -132,7 +128,39 @@ void FindPalindrome::clear()
 
 bool FindPalindrome::cutTest1(const vector<string> & stringVector)
 {
-	// TODO need to implement this...
+	// count number of char occurrences
+	int count=0;
+	int j=0;
+	char c;
+
+	//string to hold full vector as a string, and string to hold each value from vector
+	string fullSentence;
+	string fromVector;
+
+	//copy strings to fullSentence
+	for(int i=0; i<=stringVector.size()-1; i++)
+	{
+		//create variable to hold vector strings and convert each string to lowercase
+		fromVector=stringVector[i];
+		convertToLowerCase(fromVector);
+		
+		//add strings from vector
+		fullSentence.append(fromVector);
+	}
+
+	//Find number of occurrences
+	while(fullSentence.length()!=0)
+	{
+		c=fullSentence[0];
+		for (int k=0; k<=fullSentence.length()-1; k++)
+		{
+			if (fullSentence[k]==c)
+				//del and increase count
+		}
+		
+	}
+	
+
 	return false;
 }
 
@@ -157,7 +185,7 @@ bool FindPalindrome::add(const string & value)
 	for (int i=0; i<=value.length()-1; i++)
 	{
 		//using cctype library function ispunct
-		if(ispunct(value[i]) || isdigit(value[i]))
+		if(ispunct(value[i]) || isdigit(value[i]) || isspace(value[i]))
 			return false;
 	}
 
@@ -185,6 +213,9 @@ bool FindPalindrome::add(const string & value)
 	//Add word to instance
 	currentCandidateVector.push_back(value);
 
+	//Reset palindromeCount
+	palindromeCount=0;
+	
 	//Call recursiveFindPalindrome
 	recursiveFindPalindromes(currentCandidateVector, currentStringVector);
 
@@ -215,7 +246,7 @@ bool FindPalindrome::add(const vector<string> & stringVector)
 		for (int i=0; i<=value.length()-1; i++)
 		{
 			//using cctype library function ispunct
-			if(ispunct(value[i]) || isdigit(value[i]))
+			if(ispunct(value[i]) || isdigit(value[i]) || isspace(value[i]))
 				return false;
 		}
 	}
@@ -255,6 +286,9 @@ bool FindPalindrome::add(const vector<string> & stringVector)
 		currentCandidateVector.push_back(stringVector[j]);
 	}
 
+	//Reset palindromeCount
+	palindromeCount=0;
+
 	//Call recursiveFindPalindrome
 	recursiveFindPalindromes(currentCandidateVector, currentStringVector);
 	
@@ -264,9 +298,6 @@ bool FindPalindrome::add(const vector<string> & stringVector)
 
 vector< vector<string> > FindPalindrome::toVector() const
 {
-	// TODO need to implement this...
-	vector<vector<string>> returnThingie;
-
 	//return palindromeVector
 	return palindromeVector;
 }

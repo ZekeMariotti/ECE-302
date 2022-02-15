@@ -21,6 +21,7 @@ TEST_CASE("Constructor, number, and add Test", "[FindPalindrome]" )
 	REQUIRE(set1.add("1")==false);
 	REQUIRE(set1.add("$")==false);
 	REQUIRE(set1.add("Test")==false);
+	REQUIRE(set1.add("one two")==false);
 
 	//Create new vector
 	std::vector<std::string> stringVector1={"stringOne", "stringTwo"};
@@ -38,22 +39,40 @@ TEST_CASE("Constructor, number, and add Test", "[FindPalindrome]" )
 	stringVector1={"$", "aaa"};
 	REQUIRE(set1.add(stringVector1)==false);
 	stringVector1={"aaa", "bbb", "123"};
+	REQUIRE(set1.add(stringVector1)==false);
+	stringVector1={"aaa", "bbb", "one two"};
 	REQUIRE(set1.add(stringVector1)==false);*/
 }
 
-TEST_CASE( "Test recursiveFindPalindrome with add", "[FindPalindrome]" )
+TEST_CASE( "Test recursiveFindPalindrome with add, and toVector", "[FindPalindrome]" )
 {
 	//create FindPalindrome object
 	FindPalindrome set1;
 
 	//create vector 
-	std::vector<std::string> vect1={"aaa", "aaa", "aaa"};
+	std::vector<std::string> vect1={"aab", "A", "Baa"};
 
 	//Test recursive call
-	set1.add(vect1);
+	set1.add(vect1); 
 
-	//Require that number of palindromes is zero, and that palindromeVector is empty
+	//Require that number of palindromes is two, and test palindrome output vector
 	REQUIRE(set1.number()==2);
-	//REQUIRE()
+	std::vector< std::vector<std::string>> pVect=set1.toVector();
+	std::vector<std::string> vect2={"Baa", "A", "aab"};
+	REQUIRE(pVect[0]==vect1);
+	REQUIRE(pVect[1]==vect2);
+
+	//Test palindromes with different number of words
+	FindPalindrome set2;
+	set2.add("a");
+	REQUIRE(set2.number()==1);
+	set2.add("aa");
+	REQUIRE(set2.number()==2);
+	set2.add("aaa");
+	REQUIRE(set2.number()==6);
+
+	//Test clear
+	set2.clear();
+	REQUIRE(set2.number()==0);
 }
 
