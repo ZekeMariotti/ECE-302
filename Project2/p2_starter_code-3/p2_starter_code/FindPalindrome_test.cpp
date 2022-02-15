@@ -7,7 +7,7 @@
 
 TEST_CASE("Constructor, number, and add Test", "[FindPalindrome]" )
 {
-	//create Palindrome object
+	/*//create Palindrome object
 	FindPalindrome set1;
 	set1.clear();
 
@@ -38,13 +38,22 @@ TEST_CASE("Constructor, number, and add Test", "[FindPalindrome]" )
 	stringVector1={"$", "aaa"};
 	REQUIRE(set1.add(stringVector1)==false);
 	stringVector1={"aaa", "bbb", "123"};
-	REQUIRE(set1.add(stringVector1)==false);
+	REQUIRE(set1.add(stringVector1)==false);*/
 }
 
-TEST_CASE( "Test FindPalindrome add a non-allowable word", "[FindPalindrome]" )
+TEST_CASE( "Test recursiveFindPalindrome with add", "[FindPalindrome]" )
 {
-	//INFO("Hint: add a single non-allowable word");
-	//FindPalindrome b;
-	//REQUIRE(!b.add("kayak1"));
+	//create FindPalindrome object
+	FindPalindrome set1;
+
+	//create vector 
+	std::vector<std::string> vect1={"aaa", "aaa", "aaa"};
+
+	//Test recursive call
+	set1.add(vect1);
+
+	//Require that number of palindromes is zero, and that palindromeVector is empty
+	REQUIRE(set1.number()==2);
+	//REQUIRE()
 }
 

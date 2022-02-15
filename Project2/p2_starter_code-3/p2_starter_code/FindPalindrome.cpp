@@ -26,8 +26,56 @@ static void convertToLowerCase(string & value)
 void FindPalindrome::recursiveFindPalindromes(vector<string>
         candidateStringVector, vector<string> currentStringVector)
 {
-	// TODO need to implement this recursive function!
-	return;
+	cout << currentStringVector.size() << " " << candidateStringVector.size() << endl;
+	// base case
+	if (candidateStringVector.size()==0)
+	{
+		//string to hold full vector as a string, and string to hold each value from vector
+		string fullSentence;
+		string fromVector;
+		cout << "iftest\n";
+
+		//copy strings to fullSentence
+		for(int i=0; i<=currentStringVector.size()-1; i++)
+		{
+			//create variable to hold vector strings and convert each string to lowercase
+			fromVector=currentStringVector[i];
+			convertToLowerCase(fromVector);
+
+			//add strings from vector
+			fullSentence.append(fromVector);
+		}
+		
+		//test for palindrome, increase palindrome count, add palindrome to palindromeVector
+		if(isPalindrome(fullSentence))
+		{
+			palindromeCount++;
+			palindromeVector.push_back(currentStringVector);
+		}
+
+		//exit function
+		return;
+	}
+
+	else{
+		//vector used to hold strings after popback
+		vector<string> secondCandidate=candidateStringVector;
+
+	cout << currentStringVector.size() << "\n"; 
+
+		//Recursive calls
+		for (int i=0; i<=candidateStringVector.size()-1; i++)
+		{
+			//
+			currentStringVector.push_back(candidateStringVector[i]); 
+			secondCandidate.erase(secondCandidate.begin()+i);
+			recursiveFindPalindromes(secondCandidate, currentStringVector); 
+			currentStringVector.erase(currentStringVector.begin()+i);
+			secondCandidate.insert(secondCandidate.begin()+i, candidateStringVector[i]);
+		}
+	}
+
+	
 }
 
 // private function to determine if a string is a palindrome (given, you
@@ -137,6 +185,9 @@ bool FindPalindrome::add(const string & value)
 	//Add word to instance
 	currentCandidateVector.push_back(value);
 
+	//Call recursiveFindPalindrome
+	recursiveFindPalindromes(currentCandidateVector, currentStringVector);
+
 	//return true
 	return true;
 }
@@ -203,6 +254,9 @@ bool FindPalindrome::add(const vector<string> & stringVector)
 	{
 		currentCandidateVector.push_back(stringVector[j]);
 	}
+
+	//Call recursiveFindPalindrome
+	recursiveFindPalindromes(currentCandidateVector, currentStringVector);
 	
 	//return true
 	return true;
@@ -212,6 +266,8 @@ vector< vector<string> > FindPalindrome::toVector() const
 {
 	// TODO need to implement this...
 	vector<vector<string>> returnThingie;
-	return returnThingie;
+
+	//return palindromeVector
+	return palindromeVector;
 }
 
