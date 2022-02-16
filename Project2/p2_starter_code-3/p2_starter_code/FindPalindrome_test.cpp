@@ -44,7 +44,7 @@ TEST_CASE("Constructor, number, and add Test", "[FindPalindrome]" )
 	REQUIRE(set1.add(stringVector1)==false);
 }
 
-TEST_CASE( "Test cutTests, recursiveFindPalindrome with add, and toVector", "[FindPalindrome]" )
+TEST_CASE( "Test cutTests, clear, recursiveFindPalindrome with add, and toVector", "[FindPalindrome]" )
 {
 	//create FindPalindrome object
 	FindPalindrome set1;

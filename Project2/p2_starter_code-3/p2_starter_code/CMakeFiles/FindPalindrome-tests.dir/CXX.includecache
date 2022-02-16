@@ -6,6 +6,18 @@
 
 #IncludeRegexTransform: 
 
+/home/zeke/Desktop/ECE302/ECE-302/Project2/p2_starter_code-3/p2_starter_code/FindPalindrome.cpp
+string
+-
+vector
+-
+iostream
+-
+locale
+-
+FindPalindrome.hpp
+/home/zeke/Desktop/ECE302/ECE-302/Project2/p2_starter_code-3/p2_starter_code/FindPalindrome.hpp
+
 /home/zeke/Desktop/ECE302/ECE-302/Project2/p2_starter_code-3/p2_starter_code/FindPalindrome.hpp
 string
 -
