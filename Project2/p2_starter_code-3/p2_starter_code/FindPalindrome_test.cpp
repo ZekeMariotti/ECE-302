@@ -7,7 +7,7 @@
 
 TEST_CASE("Constructor, number, and add Test", "[FindPalindrome]" )
 {
-	/*//create Palindrome object
+	//create Palindrome object
 	FindPalindrome set1;
 	set1.clear();
 
@@ -41,10 +41,10 @@ TEST_CASE("Constructor, number, and add Test", "[FindPalindrome]" )
 	stringVector1={"aaa", "bbb", "123"};
 	REQUIRE(set1.add(stringVector1)==false);
 	stringVector1={"aaa", "bbb", "one two"};
-	REQUIRE(set1.add(stringVector1)==false);*/
+	REQUIRE(set1.add(stringVector1)==false);
 }
 
-TEST_CASE( "Test recursiveFindPalindrome with add, and toVector", "[FindPalindrome]" )
+TEST_CASE( "Test cutTests, recursiveFindPalindrome with add, and toVector", "[FindPalindrome]" )
 {
 	//create FindPalindrome object
 	FindPalindrome set1;
@@ -74,5 +74,25 @@ TEST_CASE( "Test recursiveFindPalindrome with add, and toVector", "[FindPalindro
 	//Test clear
 	set2.clear();
 	REQUIRE(set2.number()==0);
+
+	//Cut1 Test
+	FindPalindrome set3;
+
+	//cutTest has odd number of 'b's and 'c's
+	std::vector<std::string> cutTest={"aba", "aca"};
+	REQUIRE(set3.cutTest1(cutTest)==false);
+
+	//cutTest has only one character with an odd frequency
+	cutTest={"aabbcc", "deeff"};
+	REQUIRE(set3.cutTest1(cutTest)==true);
+
+	//Cut2 test, cutTestTwo holds same number of identical elements as cutTest, should pass cutTest2
+	cutTest={"aba", "aca"};
+	std::vector<std::string> cutTestTwo={"aab", "caa"};
+	REQUIRE(set3.cutTest2(cutTest, cutTestTwo)==true);
+
+	//cutTestTwo doesn't hold all elements of cutTest, should fail cutTeset2
+	cutTestTwo={"zyx", "f", "ghi"};
+	REQUIRE(set3.cutTest2(cutTest, cutTestTwo)==false);
 }
 

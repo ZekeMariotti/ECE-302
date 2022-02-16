@@ -26,6 +26,10 @@ static void convertToLowerCase(string & value)
 void FindPalindrome::recursiveFindPalindromes(vector<string>
         candidateStringVector, vector<string> currentStringVector)
 {
+	//if false is returned, cutTest2 failed, exit branch
+	if(cutTest2(currentStringVector, candidateStringVector)==false)
+		return;
+	
 	// base case
 	if (candidateStringVector.size()==0)
 	{ 					//for (int i=0; i<=currentStringVector.size()-1; i++) {cout << currentStringVector[i] << " ";} cout << endl;
@@ -130,6 +134,7 @@ bool FindPalindrome::cutTest1(const vector<string> & stringVector)
 {
 	// count number of char occurrences
 	int count=0;
+	int oddCount=0;
 	int j=0;
 	char c;
 
@@ -149,26 +154,109 @@ bool FindPalindrome::cutTest1(const vector<string> & stringVector)
 	}
 
 	//Find number of occurrences
-	while(fullSentence.length()!=0)
-	{
+	while(fullSentence.length()>0)
+	{ 
+		//c=first element of full string
 		c=fullSentence[0];
+
+		//reset count
+		count=0;
+
+		//loop through fullSentence checking frequency of each character
 		for (int k=0; k<=fullSentence.length()-1; k++)
 		{
+			//check if fullSentence is empty, break out if true
+			if (fullSentence.empty())
+				break;
+			
+			//compare each element to c
 			if (fullSentence[k]==c)
-				//del and increase count
-		}
-		
+			{
+				//delete and increase count
+				fullSentence.erase(k, 1); 
+				count++;
+				k--;
+			}
+		} 
+
+		//check for odd count
+			if (count%2!=0)
+				oddCount++;	
+
+		//	if oddCount is higher than one return false
+		if (oddCount>1)
+			return false;
 	}
 	
-
-	return false;
+	//return true (oddCount <=1)
+	return true;
 }
 
+// holds fullSentence2 size
+	int size2=0;
+
+
+// stringVector1 is smaller substring
 bool FindPalindrome::cutTest2(const vector<string> & stringVector1,
                               const vector<string> & stringVector2)
-{
-	// TODO need to implement this...
-	return false;
+{	
+	//Return true if second vector is smaller than first, or if either vector is empty
+	if (stringVector2.size()<=stringVector1.size() || stringVector1.size()==0 || stringVector2.size()==0)
+		return true;
+	
+	//strings to hold full vector as a string, and strings to hold each value from vector
+	string fullSentence1, fullSentence2;
+	string fromVector1, fromVector2;
+
+	//copy strings to fullSentence1
+	for(int i=0; i<=stringVector1.size()-1; i++)
+	{
+		//create variable to hold vector strings and convert each string to lowercase
+		fromVector1=stringVector1[i];
+		convertToLowerCase(fromVector1);
+		
+		//add strings from vector
+		fullSentence1.append(fromVector1); 
+	}
+
+	//copy strings to fullSentence2
+	for(int i=0; i<=stringVector2.size()-1; i++)
+	{
+		//create variable to hold vector strings and convert each string to lowercase
+		fromVector2=stringVector2[i];
+		convertToLowerCase(fromVector2);
+		
+		//add strings from vector
+		fullSentence2.append(fromVector2);
+	}
+	
+	while(fullSentence1.length()>0)
+	{
+		//check if size of fullSentence2 changed, if not, element couldn't be removed
+		// then theres an element in smaller half of the vector not in larger half, fails test
+		if (fullSentence2.size()==size2)
+			return false;
+		
+		//Check size of fullSentence2
+		size2=fullSentence2.size();
+		
+		//loop through second string for same char in first string
+		for (int i=0; i<=fullSentence2.length()-1; i++)
+		{ 
+			if (fullSentence2[i]==fullSentence1[0])
+			{
+				fullSentence1.erase(0, 1);
+				fullSentence2.erase(i, 1);
+
+				//check if fullSentence1 ran out of elements
+				if (fullSentence1.size()==0)
+					return true;
+			}
+		}
+	}
+
+	//return true if loop ran until sentence1 ran out of elements
+	return true;
 }
 
 /** Adds a new string to this FindPalindrome instance and computes the
@@ -216,8 +304,10 @@ bool FindPalindrome::add(const string & value)
 	//Reset palindromeCount
 	palindromeCount=0;
 	
-	//Call recursiveFindPalindrome
-	recursiveFindPalindromes(currentCandidateVector, currentStringVector);
+	//Call recursiveFindPalindrome if cutTest1 passes
+	//cutTest1, if false is returned, more than one character in candidateStringVector with odd frequency, fails test
+	if(cutTest1(currentCandidateVector)==true)
+		recursiveFindPalindromes(currentCandidateVector, currentStringVector);
 
 	//return true
 	return true;
@@ -289,8 +379,10 @@ bool FindPalindrome::add(const vector<string> & stringVector)
 	//Reset palindromeCount
 	palindromeCount=0;
 
-	//Call recursiveFindPalindrome
-	recursiveFindPalindromes(currentCandidateVector, currentStringVector);
+	//Call recursiveFindPalindrome if cutTest1 passes
+	//cutTest1, if false is returned, more than one character in candidateStringVector with odd frequency, fails test
+	if(cutTest1(currentCandidateVector)==true)
+		recursiveFindPalindromes(currentCandidateVector, currentStringVector);
 	
 	//return true
 	return true;
