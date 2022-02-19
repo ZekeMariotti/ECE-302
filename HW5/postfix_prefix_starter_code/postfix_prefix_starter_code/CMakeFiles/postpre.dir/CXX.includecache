@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/zeke/Desktop/ECE302/ECE-302/HW5/postfix_prefix_starter_code/postfix_prefix_starter_code/algebraic_expressions.cpp
+string
+-
+iostream
+-
+cctype
+-
+algebraic_expressions.hpp
+/home/zeke/Desktop/ECE302/ECE-302/HW5/postfix_prefix_starter_code/postfix_prefix_starter_code/algebraic_expressions.hpp
+
+/home/zeke/Desktop/ECE302/ECE-302/HW5/postfix_prefix_starter_code/postfix_prefix_starter_code/algebraic_expressions.hpp
+string
+-
+
