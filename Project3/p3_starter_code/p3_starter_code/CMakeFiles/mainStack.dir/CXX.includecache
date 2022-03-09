@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/zeke/Desktop/ece0302/ECE-302/Project3/p3_starter_code/p3_starter_code/Node.cpp
+cstddef
+-
+Node.hpp
+/home/zeke/Desktop/ece0302/ECE-302/Project3/p3_starter_code/p3_starter_code/Node.hpp
+
+/home/zeke/Desktop/ece0302/ECE-302/Project3/p3_starter_code/p3_starter_code/Node.hpp
+Node.cpp
+/home/zeke/Desktop/ece0302/ECE-302/Project3/p3_starter_code/p3_starter_code/Node.cpp
+
+/home/zeke/Desktop/ece0302/ECE-302/Project3/p3_starter_code/p3_starter_code/Stack.cpp
+iostream
+-
+cstddef
+-
+Stack.hpp
+/home/zeke/Desktop/ece0302/ECE-302/Project3/p3_starter_code/p3_starter_code/Stack.hpp
+Node.hpp
+/home/zeke/Desktop/ece0302/ECE-302/Project3/p3_starter_code/p3_starter_code/Node.hpp
+
+/home/zeke/Desktop/ece0302/ECE-302/Project3/p3_starter_code/p3_starter_code/Stack.hpp
+stdexcept
+-
+Node.hpp
+/home/zeke/Desktop/ece0302/ECE-302/Project3/p3_starter_code/p3_starter_code/Node.hpp
+Stack.cpp
+/home/zeke/Desktop/ece0302/ECE-302/Project3/p3_starter_code/p3_starter_code/Stack.cpp
+
+/home/zeke/Desktop/ece0302/ECE-302/Project3/p3_starter_code/p3_starter_code/mainStack.cpp
+iostream
+-
+Stack.hpp
+/home/zeke/Desktop/ece0302/ECE-302/Project3/p3_starter_code/p3_starter_code/Stack.hpp
+
