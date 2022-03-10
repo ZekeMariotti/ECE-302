@@ -25,8 +25,13 @@ TEST_CASE( "Test Bag add", "[XMLParser]" )
 		}
 }
 
-TEST_CASE( "Test Stack push", "[XMLParser]" )
+TEST_CASE( "Test Stack", "[XMLParser]" )
 {
+	   Stack<int> testStack;
+
+	   //test that default stack is empty 
+	   REQUIRE(testStack.isEmpty());
+	   
 	   INFO("Hint: testing Stack push()");
 		// Create a Stack to hold ints
 		Stack<int> intStack;
@@ -39,10 +44,11 @@ TEST_CASE( "Test Stack push", "[XMLParser]" )
 			stackSize = intStack.size();
 			success = (stackSize == (i+1));
 			REQUIRE(success);
+			REQUIRE(intStack.peek()==i);
 		}
 }
 
-TEST_CASE( "Test XMLParser tokenizeInputString", "[XMLParser]" )
+/*TEST_CASE( "Test XMLParser tokenizeInputString", "[XMLParser]" )
 {
 	   INFO("Hint: tokenize single element test of XMLParse");
 		// Create an instance of XMLParse
@@ -51,5 +57,5 @@ TEST_CASE( "Test XMLParser tokenizeInputString", "[XMLParser]" )
 		bool success;
 		success = myXMLParser.tokenizeInputString(testString);
 		REQUIRE(success);
-}
+}*/
 
