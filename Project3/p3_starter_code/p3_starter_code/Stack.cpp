@@ -104,16 +104,72 @@ ItemType Stack<ItemType>::peek() const throw(logic_error)
 	return returnItem;
 }  // end peek
 
-// TODO: Implement the pop method here
+// Pops the last element off of the stack
 template<class ItemType>
 bool Stack<ItemType>::pop() 
 {
-	return false;
+	//check if size of the stack is zero
+	if (currentSize==0)
+		return false;
+
+	//Pointer for looping to last element and pointer to element right before the last stack element
+	Node<ItemType>* currentNode=headPtr;
+	Node<ItemType>* previousNode=headPtr;
+
+	//get last node
+	while(currentNode->getNext()!=NULL)
+	{
+		//previousNode points to element before current Node
+		previousNode=currentNode;
+		
+		//currentNode will point to final element
+		currentNode=currentNode->getNext();
+	}
+
+	//Unlink last node and delete it, decrement size
+	previousNode->setNext(NULL);
+	delete currentNode;
+	currentSize--;
+
+	return true;
 }  // end pop
 
-// TODO: Implement the clear method here
+// Clears all elements of the stack
 template<class ItemType>
 void Stack<ItemType>::clear()
 {
+	//check if stack is empty
+	if (isEmpty())
+		return;
+	
+	//Pointer for looping to last element and to hold previous node
+	Node<ItemType>* currentNode;
+	Node<ItemType>* previousNode;
+
+	//Delete each element except first
+	while(currentSize>1)
+	{
+		currentNode=headPtr;
+		previousNode=currentNode;
+
+		//get last node and delete it
+		while(currentNode->getNext()!=NULL)
+		{
+			//previousNode points to node before currentNode
+			previousNode=currentNode;
+			
+			//currentNode will point to final element
+			currentNode=currentNode->getNext();
+		}
+
+		//Delete last element
+		previousNode->setNext(NULL);
+		delete currentNode;
+		currentSize--;
+	}
+
+	//set headPtr to null and decrease size
+	headPtr=NULL;
+	currentSize--;
 }  // end clear
 

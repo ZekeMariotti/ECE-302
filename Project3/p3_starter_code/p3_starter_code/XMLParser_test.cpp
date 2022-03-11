@@ -46,6 +46,15 @@ TEST_CASE( "Test Stack", "[XMLParser]" )
 			REQUIRE(success);
 			REQUIRE(intStack.peek()==i);
 		}
+
+		//Testing pop
+		REQUIRE(intStack.pop());
+		REQUIRE(intStack.peek()==1);
+		REQUIRE(intStack.size()==2);
+
+		//Testing Clear
+		intStack.clear();
+		REQUIRE(intStack.isEmpty());
 }
 
 /*TEST_CASE( "Test XMLParser tokenizeInputString", "[XMLParser]" )
