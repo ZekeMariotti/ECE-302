@@ -17,11 +17,34 @@ XMLParser::~XMLParser()
 {
 }  // end destructor
 
-// TODO: Implement the tokenizeInputString method
+// Reads in an input string, stores entire string as tokens, returns true if all the markup/tag
+// tokens are valid (markup/tag = characters inside <> delimiters)
 bool XMLParser::tokenizeInputString(const std::string &inputString)
 {
+	//stringStart is index of first non-whitespace character
+	//currentChar holds the character of the string during each loop iteration
+	int stringStart=0;
+	char currentChar=inputString[stringStart];
+
+	//Check first non-whitespace character
+	while(currentChar==' ' && currentChar!='<')
+	{
+		stringStart++;
+		currentChar=inputString[stringStart];
+	}
+	
+	//if first char isn't '<', return false
+	if (currentChar!='<')
+		return false;
+	
+	//Read entire string
+	for (int i=0; i<=inputString.length(); i++)
+	{
+		//Read each character, assign token type, store it, check if its valid
+	}
+	
 	return false;
-}  // end
+}  // end tokenizeInputString
 
 // TODO: Implement a helper function to delete attributes from a START_TAG
 // or EMPTY_TAG string (you can change this...)
