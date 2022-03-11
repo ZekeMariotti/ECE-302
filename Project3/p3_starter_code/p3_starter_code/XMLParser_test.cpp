@@ -66,5 +66,29 @@ TEST_CASE( "Test XMLParser tokenizeInputString", "[XMLParser]" )
 		bool success;
 		success = myXMLParser.tokenizeInputString(testString);
 		REQUIRE(success);
+
+		//test invalid cases, and cases with whitespace
+		XMLParser parserTwo;
+		testString = "thisIsAnInvalidString";
+		REQUIRE(parserTwo.tokenizeInputString(testString)==false);
+
+		XMLParser parserThree;
+		testString = "<<test>";
+		REQUIRE(parserThree.tokenizeInputString(testString)==false);
+
+		XMLParser parserFour;
+		testString = "         <test>   d  <test>    ";
+		REQUIRE(parserFour.tokenizeInputString(testString)==true);
+
+		XMLParser parserFive;
+		testString = "<test> d ";
+		REQUIRE(parserFive.tokenizeInputString(testString)==false);
+
+		XMLParser parserSix;
+		testString = "<test><";
+		REQUIRE(parserSix.tokenizeInputString(testString)==false);
+
+
+		
 }
 

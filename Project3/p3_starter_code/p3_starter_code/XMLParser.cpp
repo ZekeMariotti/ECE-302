@@ -21,10 +21,13 @@ XMLParser::~XMLParser()
 // tokens are valid (markup/tag = characters inside <> delimiters)
 bool XMLParser::tokenizeInputString(const std::string &inputString)
 {
-	//stringStart is index of first non-whitespace character
+	//stringStart will hold index of first non-whitespace character
 	//currentChar holds the character of the string during each loop iteration
 	int stringStart=0;
 	char currentChar=inputString[stringStart];
+	int vectorCount=0; //used to index the token vector
+	char firstChar; //firstChar holds char after first '<' to find "</" end tag or "<?" declaration
+	char lastChar; //lastChar holds char before '>' to find "/>" empty tag or "?>" declaration
 
 	//Check first non-whitespace character
 	while(currentChar==' ' && currentChar!='<')
@@ -35,15 +38,108 @@ bool XMLParser::tokenizeInputString(const std::string &inputString)
 	
 	//if first char isn't '<', return false
 	if (currentChar!='<')
-		return false;
-	
-	//Read entire string
-	for (int i=0; i<=inputString.length(); i++)
 	{
-		//Read each character, assign token type, store it, check if its valid
+		tokenizedInputVector.clear();
+		return false;
 	}
 	
-	return false;
+	//Read entire string
+	for (int i=stringStart; i<=inputString.length()-1; i++)
+	{
+		//store char from input
+		currentChar=inputString[i];
+		//^^^store char from input string^^^
+
+		//if currentChar!='<', token is content
+		if (currentChar!='<')
+		{
+			//create a new TokenStruct
+			TokenStruct* currentTokenStruct=new TokenStruct;
+			tokenizedInputVector.push_back(*currentTokenStruct); //push back new TokenStruct to the tokenVector
+			tokenizedInputVector[vectorCount].tokenType=DECLARATION; //set token type to declaration
+
+			//Loop through until end of content is reached (when new tag starts with '<')
+			while(currentChar!='<')
+			{
+				//check for missing end tag at end of string, or whitespace
+				if (i>=inputString.length())
+				{
+					//loop through tokenString for content, check for non whitespace
+					for (int k=0; k<=tokenizedInputVector[vectorCount].tokenString.length()-1; k++)
+					{
+						currentChar=tokenizedInputVector[vectorCount].tokenString[k];
+						
+						if(currentChar!=' ')
+						{
+							tokenizedInputVector.clear();
+							return false;
+						}
+					}
+					return true;
+				}
+				
+				tokenizedInputVector[vectorCount].tokenString.push_back(currentChar); //push char onto content tokenString
+				i++; //increment i
+				currentChar=inputString[i]; //currentChar=next char in inputString
+			}
+
+			//increase vectorCount
+			vectorCount++;
+		}
+
+		//check if the currentChar is the beginning of a tag
+		if (currentChar=='<')
+		{
+			//create a new TokenStruct
+			TokenStruct* currentTokenStruct=new TokenStruct;
+			tokenizedInputVector.push_back(*currentTokenStruct); //push back new TokenStruct to the tokenVector
+			tokenizedInputVector[vectorCount].tokenType=START_TAG; //Set tag type to start
+			firstChar=inputString[i+1]; //store first char after '<'
+
+			//check for end tag "</"
+			if(firstChar=='/')
+				tokenizedInputVector[vectorCount].tokenType=END_TAG;
+
+			//Loop through the rest of the tag until '>' is reached
+			while(currentChar!='>')
+			{
+				tokenizedInputVector[vectorCount].tokenString.push_back(currentChar); //push currentChar onto the tokenString
+				lastChar=currentChar; //previousChar will hold char before '>' at end of loop
+				i++; //increment i
+				currentChar=inputString[i]; //set currentChar to the next char in the string
+				
+				//check for invalid nested '<'
+				if (currentChar=='<')
+				{
+					tokenizedInputVector.clear();
+					return false;
+				}
+
+				//check for missing end tag at end of string
+				if (i>=inputString.length()-1 && currentChar!='>')
+				{
+					tokenizedInputVector.clear();
+					return false;
+				}
+			}
+
+			//Push final '>' onto the token
+			tokenizedInputVector[vectorCount].tokenString.push_back(currentChar); 
+
+			//Check for empty tag "/>"
+			if(lastChar=='/')
+				tokenizedInputVector[vectorCount].tokenType=EMPTY_TAG;
+
+			//Check for declaration
+			if(firstChar=='?' && lastChar=='?')
+				tokenizedInputVector[vectorCount].tokenType=DECLARATION;
+
+			//Increment vectorCount, (end of current token reached)
+			vectorCount++;		
+		}
+	}
+
+	return true;
 }  // end tokenizeInputString
 
 // TODO: Implement a helper function to delete attributes from a START_TAG
