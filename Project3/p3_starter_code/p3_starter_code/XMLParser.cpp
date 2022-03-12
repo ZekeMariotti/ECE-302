@@ -94,26 +94,32 @@ bool XMLParser::tokenizeInputString(const std::string &inputString)
 			TokenStruct* currentTokenStruct=new TokenStruct;
 			tokenizedInputVector.push_back(*currentTokenStruct); //push back new TokenStruct to the tokenVector
 			tokenizedInputVector[vectorCount].tokenType=START_TAG; //Set tag type to start
-			firstChar=inputString[i+1]; //store first char after '<'
+			i++; //increment i to exclude '<' from the token
+			currentChar=inputString[i];
+			firstChar=inputString[i]; //store first char after '<'
 
 			//check for end tag "</"
 			if(firstChar=='/')
-				tokenizedInputVector[vectorCount].tokenType=END_TAG;
+			{
+				tokenizedInputVector[vectorCount].tokenType=END_TAG; 
+				i++; //increment i to exclude '/' from token
+				currentChar=inputString[i];
+			}
 
 			//Loop through the rest of the tag until '>' is reached
 			while(currentChar!='>')
 			{
-				tokenizedInputVector[vectorCount].tokenString.push_back(currentChar); //push currentChar onto the tokenString
-				lastChar=currentChar; //previousChar will hold char before '>' at end of loop
-				i++; //increment i
-				currentChar=inputString[i]; //set currentChar to the next char in the string
-				
 				//check for invalid nested '<'
 				if (currentChar=='<')
 				{
 					tokenizedInputVector.clear();
 					return false;
 				}
+				
+				tokenizedInputVector[vectorCount].tokenString.push_back(currentChar); //push currentChar onto the tokenString
+				lastChar=currentChar; //previousChar will hold char before '>' at end of loop
+				i++; //increment i
+				currentChar=inputString[i]; //set currentChar to the next char in the string
 
 				//check for missing end tag at end of string
 				if (i>=inputString.length()-1 && currentChar!='>')
@@ -123,16 +129,20 @@ bool XMLParser::tokenizeInputString(const std::string &inputString)
 				}
 			}
 
-			//Push final '>' onto the token
-			tokenizedInputVector[vectorCount].tokenString.push_back(currentChar); 
-
 			//Check for empty tag "/>"
 			if(lastChar=='/')
+			{
 				tokenizedInputVector[vectorCount].tokenType=EMPTY_TAG;
+				tokenizedInputVector[vectorCount].tokenString.pop_back(); //remove '/' from tag
+			}
 
 			//Check for declaration
 			if(firstChar=='?' && lastChar=='?')
+			{
 				tokenizedInputVector[vectorCount].tokenType=DECLARATION;
+				tokenizedInputVector[vectorCount].tokenString.pop_back(); //remove first '?' from tag
+				tokenizedInputVector[vectorCount].tokenString.erase(0, 1); //remove last '?' from tag
+			}
 
 			//Increment vectorCount, (end of current token reached)
 			vectorCount++;		

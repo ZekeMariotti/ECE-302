@@ -88,6 +88,14 @@ TEST_CASE( "Test XMLParser tokenizeInputString", "[XMLParser]" )
 		testString = "<test><";
 		REQUIRE(parserSix.tokenizeInputString(testString)==false);
 
+		XMLParser parserSeven;
+		testString = "<test/>";
+		REQUIRE(parserSeven.tokenizeInputString(testString)==true);
+
+		XMLParser parserEight;
+		testString = "<?test?>";
+		REQUIRE(parserEight.tokenizeInputString(testString)==true);
+
 
 		
 }
