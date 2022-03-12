@@ -108,9 +108,11 @@ TEST_CASE( "Test XMLParser tokenizeInputString", "[XMLParser]" )
 		REQUIRE(parserTen.parseTokenizedInput()==false);
 
 		XMLParser parserEleven;
-		testString = "<?test attributesListedHere:?>";
+		testString = "<?tagNameTest attributesListedHere:?><tagNameTest/><tagNameTest/>";
 		REQUIRE(parserEleven.tokenizeInputString(testString)==true);
 		REQUIRE(parserEleven.parseTokenizedInput()==true);
+		REQUIRE(parserEleven.containsElementName("tagNameTest")==true);
+		REQUIRE(parserEleven.frequencyElementName("tagNameTest")==3);
 
 
 		

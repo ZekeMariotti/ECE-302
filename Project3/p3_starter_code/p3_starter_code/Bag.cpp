@@ -5,6 +5,7 @@
 
 #include <algorithm>
 #include <cstddef>
+#include <iostream>
 
 template<class ItemType>
 Bag<ItemType>::Bag() : headPtr(nullptr), itemCount(0)
@@ -73,7 +74,7 @@ Node<ItemType>* Bag<ItemType>::getPointerTo(const ItemType& target) const
 template<class ItemType>
 bool Bag<ItemType>::contains(const ItemType& anEntry) const
 {
-	return (getPointerTo(anEntry) != nullptr);
+	return (getPointerTo(anEntry) != nullptr); 
 }  // end contains
 
 template<class ItemType>

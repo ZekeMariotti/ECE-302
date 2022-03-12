@@ -20,11 +20,11 @@ Stack<ItemType>::Stack()
 template<class ItemType>
 Stack<ItemType>::~Stack()
 {
-	if (headPtr==NULL)
+	if (isEmpty())
 		return;
 
 	//delete start pointer
-	delete headPtr;
+		delete headPtr;
 }  // end destructor
 
 // Return true if currentSize is 0

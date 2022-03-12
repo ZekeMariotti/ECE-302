@@ -11,6 +11,8 @@
 // TODO: Implement the constructor here
 XMLParser::XMLParser()
 {
+	//set parseSuccess to false
+	parseSuccess=false;
 }  // end default constructor
 
 // TODO: Implement the destructor here
@@ -200,14 +202,18 @@ bool XMLParser::parseTokenizedInput()
 		//get tag type
 		tagType=tokenizedInputVector[i].tokenType;
 		tagName=tokenizedInputVector[i].tokenString; 
-cout << tagType << endl;
+
 		//Switch statement to check the token type
 		switch (tagType)
 		{
 			case START_TAG:
 				//Start tag
+
 				//get rid of attributes for the start tag
 				tagName=deleteAttributes(tagName); 
+
+				//Add tag name to the element bag
+				elementNameBag.add(tagName);
 
 				//check for '-' at beginning of tag, ',' and '.' will be handled afterwards
 				if (tagName[0]=='-')
@@ -255,6 +261,9 @@ cout << tagType << endl;
 				//get rid of attributes for the empty tag
 				tagName=deleteAttributes(tagName);
 
+				//Add tag name to the element bag
+				elementNameBag.add(tagName);
+
 				//check for '-' at beginning of tag, ',' and '.' will be handled afterwards
 				if (tagName[0]=='-')
 					return false;
@@ -282,6 +291,9 @@ cout << tagType << endl;
 				//get rid of attributes for the declaration tag
 				tagName=deleteAttributes(tagName);
 
+				//Add tag name to the element bag
+				elementNameBag.add(tagName);
+
 				//check for '-' at beginning of tag, ',' and '.' will be handled afterwards
 				if (tagName[0]=='-')
 					return false;
@@ -293,7 +305,7 @@ cout << tagType << endl;
 					if (ispunct(tagName[j]) && tagName[j]!='-' && tagName[j]!='_') 
 						return false;
 				}
-cout << "test";
+
 				//Declarations do not follow parethesis grammar
 				break;
 		}
@@ -302,7 +314,9 @@ cout << "test";
 	//Testing parenthesis grammar
 		if (!parseStack.isEmpty())
 			return false; // If the parseStack isn't empty, then there was some start tag that didn't have a matching end tag
-	
+
+	//update parseSuccess and return true
+	parseSuccess=true;
 	return true;
 }
 
@@ -311,7 +325,7 @@ void XMLParser::clear()
 {
 	tokenizedInputVector.clear(); //clear tokenizedInputVector
 	parseStack.clear(); //clear parseStack
-	elementNameBag->clear(); //clear elementNameBag
+	elementNameBag.clear(); //clear elementNameBag
 }
 
 // Returns the tokenized input vector
@@ -320,15 +334,26 @@ vector<TokenStruct> XMLParser::returnTokenizedInput() const
 	return tokenizedInputVector;
 }
 
-// TODO: Implement the containsElementName method
+// Returns true if the inputString is within the tokenizedVector
 bool XMLParser::containsElementName(const std::string &inputString) const
 {
-	return false;
+	//check if the XMLParser object successfully called tokenized/parsed an input string
+	if (!parseSuccess)
+		return false;
+
+	//Check if the inputString name is contained inside the bag of tag names
+	return (elementNameBag.contains(inputString));
+	
 }
 
-// TODO: Implement the frequencyElementName method
+// Returns the number of times the inputString appears in the tokenizedVector
 int XMLParser::frequencyElementName(const std::string &inputString) const
 {
-	return -1;
+	//check if the XMLParser object successfully called tokenized/parsed an input string
+	if (!parseSuccess)
+		return -1;
+
+	//Find the frequency of the inputString 
+	return (elementNameBag.getFrequencyOf(inputString));
 }
 
