@@ -1,6 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #define CATCH_CONFIG_COLOUR_NONE
 #include <iostream>
+#include <fstream>
 #include "catch.hpp"
 #include "XMLParser.hpp"
 
@@ -106,7 +107,7 @@ TEST_CASE( "Test XMLParser tokenizeInputString", "[XMLParser]" )
 		testString = "<test!@#$%^&*>";
 		REQUIRE(parserTen.tokenizeInputString(testString)==true);
 		REQUIRE(parserTen.parseTokenizedInput()==false);
-
+		
 		XMLParser parserEleven;
 		testString = "<?tagNameTest attributesListedHere:?><tagNameTest/><tagNameTest/>";
 		REQUIRE(parserEleven.tokenizeInputString(testString)==true);
@@ -114,7 +115,26 @@ TEST_CASE( "Test XMLParser tokenizeInputString", "[XMLParser]" )
 		REQUIRE(parserEleven.containsElementName("tagNameTest")==true);
 		REQUIRE(parserEleven.frequencyElementName("tagNameTest")==3);
 
+		//Testing input file
+		XMLParser parserTwelve;
+		ifstream infile("TestFile.txt");
+		string inString, fullString;
 
+		ofstream outfile("Test_Output_File.txt");
+
+		//Get input string
+		while(!infile.eof())
+		{
+			getline(infile, inString);
+			fullString.append(inString);
+		}
+
+		// Output file created to ensure file read in correctly
+		outfile << fullString;	
+
+		//Test input string
+		REQUIRE(parserTwelve.tokenizeInputString(fullString)==true);
+		REQUIRE(parserTwelve.parseTokenizedInput()==true);
 		
 }
 

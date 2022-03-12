@@ -50,16 +50,6 @@ Node.hpp
 Stack.cpp
 /home/zeke/Desktop/ece0302/ECE-302/Project3/p3_starter_code/p3_starter_code/Stack.cpp
 
-/home/zeke/Desktop/ece0302/ECE-302/Project3/p3_starter_code/p3_starter_code/XMLParser.cpp
-string
--
-assert.h
--
-cctype
--
-XMLParser.hpp
-/home/zeke/Desktop/ece0302/ECE-302/Project3/p3_starter_code/p3_starter_code/XMLParser.hpp
-
 /home/zeke/Desktop/ece0302/ECE-302/Project3/p3_starter_code/p3_starter_code/XMLParser.hpp
 string
 -
@@ -70,6 +60,8 @@ Stack.hpp
 
 /home/zeke/Desktop/ece0302/ECE-302/Project3/p3_starter_code/p3_starter_code/XMLParser_test.cpp
 iostream
+-
+fstream
 -
 catch.hpp
 /home/zeke/Desktop/ece0302/ECE-302/Project3/p3_starter_code/p3_starter_code/catch.hpp
