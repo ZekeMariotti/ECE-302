@@ -5,6 +5,7 @@
 
 #include <string>
 #include <assert.h>
+#include <cctype>
 #include "XMLParser.hpp"
 
 // TODO: Implement the constructor here
@@ -43,7 +44,7 @@ bool XMLParser::tokenizeInputString(const std::string &inputString)
 		return false;
 	}
 	
-	//Read entire string
+	//Read entire input string
 	for (int i=stringStart; i<=inputString.length()-1; i++)
 	{
 		//store char from input
@@ -56,7 +57,7 @@ bool XMLParser::tokenizeInputString(const std::string &inputString)
 			//create a new TokenStruct
 			TokenStruct* currentTokenStruct=new TokenStruct;
 			tokenizedInputVector.push_back(*currentTokenStruct); //push back new TokenStruct to the tokenVector
-			tokenizedInputVector[vectorCount].tokenType=DECLARATION; //set token type to declaration
+			tokenizedInputVector[vectorCount].tokenType=CONTENT; //set token type to declaration
 
 			//Loop through until end of content is reached (when new tag starts with '<')
 			while(currentChar!='<')
@@ -144,6 +145,13 @@ bool XMLParser::tokenizeInputString(const std::string &inputString)
 				tokenizedInputVector[vectorCount].tokenString.erase(0, 1); //remove last '?' from tag
 			}
 
+			//Check for invalid tag type of </element/> not empty, not end tag
+			if (firstChar=='/' && lastChar=='/')
+			{
+				//This error should be handled in the parser, not when it is tokenized (/ will be part of an invalid tag name)
+				tokenizedInputVector[vectorCount].tokenString.push_back(lastChar); //add '/' back to string
+			}
+
 			//Increment vectorCount, (end of current token reached)
 			vectorCount++;		
 		}
@@ -154,22 +162,159 @@ bool XMLParser::tokenizeInputString(const std::string &inputString)
 
 // TODO: Implement a helper function to delete attributes from a START_TAG
 // or EMPTY_TAG string (you can change this...)
+// This function deletes attributes(all contents after first whitespace)
 static std::string deleteAttributes(std::string input)
 {
+	//loop through entire string
+	for (int i=0; i<=input.length()-1; i++)
+	{
+		if(input[i]==' ')
+		{
+			input.erase(i, input.length()-i); //if input[i] is a ' ' space character, erase everything after it, including the space
+			return input;
+		}
+	}
+	
 	return input;
 }
 
-// TODO: Implement the parseTokenizedInput method here
+// parseTokenizedInput checks the tokenizedInputVector for correct XML grammar
 bool XMLParser::parseTokenizedInput()
 {
-	return false;
+	//check if a tokenizedInputVector was sucessfully created
+	if (tokenizedInputVector.empty())
+		return false; //return false if vector size is zero (no elements, nothing to parse)
+	
+	//variable to hold tag type of each vector element / token
+	int tagType;
+
+	//variable to hold tag name from each token
+	string tagName;
+
+	//list of invalid characters
+	string invalidCharacters=" !\"#$%&'()*+,/;<=>?@[\\]^`{|}~.";
+	
+	//loop through entire tokenized vector
+	for (int i=0; i<=tokenizedInputVector.size()-1; i++)
+	{
+		//get tag type
+		tagType=tokenizedInputVector[i].tokenType;
+		tagName=tokenizedInputVector[i].tokenString; 
+cout << tagType << endl;
+		//Switch statement to check the token type
+		switch (tagType)
+		{
+			case START_TAG:
+				//Start tag
+				//get rid of attributes for the start tag
+				tagName=deleteAttributes(tagName); 
+
+				//check for '-' at beginning of tag, ',' and '.' will be handled afterwards
+				if (tagName[0]=='-')
+					return false;
+
+				//loop through entire tagName
+				for (int j=0; j<=tagName.length()-1; j++)
+				{
+					//if there's a char in tagName that is punctuation, other than '-' or '_', return false (invalid XML grammar)
+					if (ispunct(tagName[j]) && tagName[j]!='-' && tagName[j]!='_') 
+						return false; 
+				}
+
+				//Push start tag name onto the stack
+				parseStack.push(tagName);
+
+				break;
+
+			case END_TAG:
+				//End tag
+
+				//check for '-' at beginning of tag, ',' and '.' will be handled afterwards
+				if (tagName[0]=='-')
+					return false;
+					
+				//loop through entire tagName
+				for (int j=0; j<=tagName.length()-1; j++)
+				{
+					//if there's a char in tagName that is punctuation, other than '-' or '_', return false (invalid XML grammar)
+					if (ispunct(tagName[j]) && tagName[j]!='-' && tagName[j]!='_') 
+						return false;
+				}
+
+				//Check if end tag matches the most recent start tag from the stack
+				if (tagName==parseStack.peek())
+				{
+					parseStack.pop();
+				}
+
+				break;
+
+			case EMPTY_TAG:
+				//Empty tag
+
+				//get rid of attributes for the empty tag
+				tagName=deleteAttributes(tagName);
+
+				//check for '-' at beginning of tag, ',' and '.' will be handled afterwards
+				if (tagName[0]=='-')
+					return false;
+
+				//loop through entire tagName
+				for (int j=0; j<=tagName.length()-1; j++)
+				{
+					//if there's a char in tagName that is punctuation, other than '-' or '_', return false (invalid XML grammar)
+					if (ispunct(tagName[j]) && tagName[j]!='-' && tagName[j]!='_') 
+						return false;
+				}
+
+				//Empty tags do not follow parenthesis grammar
+				break;
+
+			case CONTENT:
+				//Content
+				//All characters in content are valid, only checks are for valid nesting grammar for the tags the content is between
+
+				break;
+
+			case DECLARATION:
+				//Declaration
+
+				//get rid of attributes for the declaration tag
+				tagName=deleteAttributes(tagName);
+
+				//check for '-' at beginning of tag, ',' and '.' will be handled afterwards
+				if (tagName[0]=='-')
+					return false;
+
+				//loop through entire tagName
+				for (int j=0; j<=tagName.length()-1; j++)
+				{
+					//if there's a char in tagName that is punctuation, other than '-' or '_', return false (invalid XML grammar)
+					if (ispunct(tagName[j]) && tagName[j]!='-' && tagName[j]!='_') 
+						return false;
+				}
+cout << "test";
+				//Declarations do not follow parethesis grammar
+				break;
+		}
+	}
+
+	//Testing parenthesis grammar
+		if (!parseStack.isEmpty())
+			return false; // If the parseStack isn't empty, then there was some start tag that didn't have a matching end tag
+	
+	return true;
 }
 
-// TODO: Implement the clear method here
+// Clears the internal data structures for a instance of the class.
 void XMLParser::clear()
 {
+	tokenizedInputVector.clear(); //clear tokenizedInputVector
+	parseStack.clear(); //clear parseStack
+	elementNameBag->clear(); //clear elementNameBag
 }
 
+// Returns the tokenized input vector
 vector<TokenStruct> XMLParser::returnTokenizedInput() const
 {
 	return tokenizedInputVector;

@@ -96,6 +96,22 @@ TEST_CASE( "Test XMLParser tokenizeInputString", "[XMLParser]" )
 		testString = "<?test?>";
 		REQUIRE(parserEight.tokenizeInputString(testString)==true);
 
+		//Test parser
+		XMLParser parserNine;
+		testString = "<test attributes here> </test>";
+		REQUIRE(parserNine.tokenizeInputString(testString)==true);
+		REQUIRE(parserNine.parseTokenizedInput()==true);
+
+		XMLParser parserTen;
+		testString = "<test!@#$%^&*>";
+		REQUIRE(parserTen.tokenizeInputString(testString)==true);
+		REQUIRE(parserTen.parseTokenizedInput()==false);
+
+		XMLParser parserEleven;
+		testString = "<?test attributesListedHere:?>";
+		REQUIRE(parserEleven.tokenizeInputString(testString)==true);
+		REQUIRE(parserEleven.parseTokenizedInput()==true);
+
 
 		
 }
