@@ -4,6 +4,7 @@
 
 #include "abstract_queue.h"
 #include "abstract_list.h"
+#include <iostream>
 
 template <typename T, typename L>
 class Queue: public AbstractQueue<T>
@@ -47,7 +48,7 @@ private:
 template <typename T, typename L>
 void Queue<T,L>::enqueue(const T& item)
 {
-  internal_list.insert(internal_list.getLength(), item);
+   internal_list.insert(internal_list.getLength(), item);
 }
 
 template <typename T, typename L>

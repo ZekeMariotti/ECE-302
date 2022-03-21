@@ -23,7 +23,7 @@ TEST_CASE("Testing 1", "[queue]") {
 
   queue.dequeue();
   queue.dequeue();
-  REQUIRE(queue.isEmpty());
+  REQUIRE(queue.isEmpty()); 
 
   queue.enqueue(241);
   REQUIRE_FALSE(queue.isEmpty());
@@ -42,8 +42,8 @@ TEST_CASE("Testing 1", "[queue]") {
 
   REQUIRE_FALSE(another_queue.isEmpty());
   REQUIRE(another_queue.peekFront() == 241);
-  another_queue.dequeue();
+  another_queue.dequeue(); 
   REQUIRE(another_queue.peekFront() == 45);
-  another_queue.dequeue();
+  another_queue.dequeue(); 
   REQUIRE(another_queue.peekFront() == 62);
 }
