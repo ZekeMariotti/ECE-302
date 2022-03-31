@@ -1,4 +1,4 @@
-# Install script for directory: /home/zeke/Desktop/ece0302/ECE-302/Project3/p3_starter_code/p3_starter_code
+# Install script for directory: /home/zeke/Desktop/ECE302/ECE-302/Project3/p3_starter_code/p3_starter_code
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -37,6 +37,11 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
+# Set default install directory permissions.
+if(NOT DEFINED CMAKE_OBJDUMP)
+  set(CMAKE_OBJDUMP "/usr/bin/objdump")
+endif()
+
 if(CMAKE_INSTALL_COMPONENT)
   set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INSTALL_COMPONENT}.txt")
 else()
@@ -45,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/zeke/Desktop/ece0302/ECE-302/Project3/p3_starter_code/p3_starter_code/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/zeke/Desktop/ECE302/ECE-302/Project3/p3_starter_code/p3_starter_code/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

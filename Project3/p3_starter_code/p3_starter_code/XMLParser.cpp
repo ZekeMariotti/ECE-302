@@ -8,14 +8,14 @@
 #include <cctype>
 #include "XMLParser.hpp"
 
-// TODO: Implement the constructor here
+//constructor 
 XMLParser::XMLParser()
 {
 	//set parseSuccess to false
 	parseSuccess=false;
 }  // end default constructor
 
-// TODO: Implement the destructor here
+// Destructor, no dynamic memory allocation
 XMLParser::~XMLParser()
 {
 }  // end destructor
@@ -326,6 +326,7 @@ void XMLParser::clear()
 	tokenizedInputVector.clear(); //clear tokenizedInputVector
 	parseStack.clear(); //clear parseStack
 	elementNameBag.clear(); //clear elementNameBag
+	parseSuccess=false; //reset parseSuccess to false
 }
 
 // Returns the tokenized input vector

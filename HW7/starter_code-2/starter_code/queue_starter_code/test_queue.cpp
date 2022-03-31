@@ -23,7 +23,11 @@ TEST_CASE("Testing 1", "[queue]") {
 
   queue.dequeue();
   queue.dequeue();
+<<<<<<< HEAD
   REQUIRE(queue.isEmpty());
+=======
+  REQUIRE(queue.isEmpty()); 
+>>>>>>> 345c6e4970cfc67544852adc097d82be2dc74111
 
   queue.enqueue(241);
   REQUIRE_FALSE(queue.isEmpty());
@@ -42,8 +46,14 @@ TEST_CASE("Testing 1", "[queue]") {
 
   REQUIRE_FALSE(another_queue.isEmpty());
   REQUIRE(another_queue.peekFront() == 241);
+<<<<<<< HEAD
   another_queue.dequeue();
   REQUIRE(another_queue.peekFront() == 45);
   another_queue.dequeue();
+=======
+  another_queue.dequeue(); 
+  REQUIRE(another_queue.peekFront() == 45);
+  another_queue.dequeue(); 
+>>>>>>> 345c6e4970cfc67544852adc097d82be2dc74111
   REQUIRE(another_queue.peekFront() == 62);
 }

@@ -48,12 +48,12 @@ TEST_CASE( "Test Stack", "[XMLParser]" )
 			REQUIRE(intStack.peek()==i);
 		}
 
-		//Testing pop
+		//Testing pop, peek, and size
 		REQUIRE(intStack.pop());
 		REQUIRE(intStack.peek()==1);
 		REQUIRE(intStack.size()==2);
 
-		//Testing Clear
+		//Testing Clear and isEmpty
 		intStack.clear();
 		REQUIRE(intStack.isEmpty());
 }
@@ -61,7 +61,7 @@ TEST_CASE( "Test Stack", "[XMLParser]" )
 TEST_CASE( "Test XMLParser tokenizeInputString", "[XMLParser]" )
 {
 	   INFO("Hint: tokenize single element test of XMLParse");
-		// Create an instance of XMLParse
+		// Create an instance of XMLParser
 		XMLParser myXMLParser;
 		string testString = "<test>stuff</test>";
 		bool success;
@@ -114,6 +114,12 @@ TEST_CASE( "Test XMLParser tokenizeInputString", "[XMLParser]" )
 		REQUIRE(parserEleven.parseTokenizedInput()==true);
 		REQUIRE(parserEleven.containsElementName("tagNameTest")==true);
 		REQUIRE(parserEleven.frequencyElementName("tagNameTest")==3);
+
+		vector<TokenStruct> returnVector=parserEleven.returnTokenizedInput(); //call returnTokenizedInput
+		REQUIRE(returnVector[0].tokenString=="tagNameTest attributesListedHere:");
+		parserNine.clear();
+		REQUIRE(parserNine.parseTokenizedInput()==false);
+		REQUIRE(parserNine.containsElementName("tagNameTest")==false);
 
 		//Testing input file
 		XMLParser parserTwelve;
