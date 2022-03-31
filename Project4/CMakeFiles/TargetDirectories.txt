@@ -1,0 +1,11 @@
+/home/zeke/Desktop/ECE302/ECE-302/Project4/CMakeFiles/rebuild_cache.dir
+/home/zeke/Desktop/ECE302/ECE-302/Project4/CMakeFiles/edit_cache.dir
+/home/zeke/Desktop/ECE302/ECE-302/Project4/CMakeFiles/test.dir
+/home/zeke/Desktop/ECE302/ECE-302/Project4/CMakeFiles/submission.dir
+/home/zeke/Desktop/ECE302/ECE-302/Project4/CMakeFiles/pathfinder.dir
+/home/zeke/Desktop/ECE302/ECE-302/Project4/CMakeFiles/student-tests.dir
+/home/zeke/Desktop/ECE302/ECE-302/Project4/CMakeFiles/compare.dir
+/home/zeke/Desktop/ECE302/ECE-302/Project4/lib/CMakeFiles/rebuild_cache.dir
+/home/zeke/Desktop/ECE302/ECE-302/Project4/lib/CMakeFiles/edit_cache.dir
+/home/zeke/Desktop/ECE302/ECE-302/Project4/lib/CMakeFiles/test.dir
+/home/zeke/Desktop/ECE302/ECE-302/Project4/lib/CMakeFiles/image.dir
