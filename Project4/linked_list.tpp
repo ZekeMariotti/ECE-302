@@ -61,7 +61,7 @@ template <typename T>
 bool LinkedList<T>::insert(std::size_t position, const T& item)
 {
   //error check position
-  if (position<0)
+  if (position<0 || position>size)
     return false;
   
   //check if list is empty
@@ -86,19 +86,36 @@ bool LinkedList<T>::insert(std::size_t position, const T& item)
   //loop to the node at position
 	for (int i=0; i<position; i++)
 	{
-		//currentNode will point to final element
-    prevNode=currentNode;
-		currentNode=currentNode->getNext();
+		if (position!=0)
+    {
+      //currentNode will point to final element
+      prevNode=currentNode;
+      currentNode=currentNode->getNext();
+    }
 	}
+
+  //Check for position=0
+  if (position=0)
+  {
+    Node<T>* newNode=new Node<T>;
+    newNode->setItem(item);
+    newNode->setNext(currentNode);
+    headPtr=newNode;
+    size++;
+
+    return true;
+  }
 
   //Create a node to add to the list, set its item, and link it to nodes before and after
 	Node<T>* newNode=new Node<T>;
-	endNode->setItem(item); 
+	newNode->setItem(item); 
 	prevNode->setNext(newNode);
-	endNode->setNext(NULL);
+  
+  if(prevNode->getNext()!=NULL)
+	  newNode->setNext(currentNode);
 
 	//increment size
-	currentSize++;
+	size++;
 
   return true;
 }
@@ -122,8 +139,16 @@ void LinkedList<T>::clear()
 template <typename T>
 T LinkedList<T>::getEntry(std::size_t position) const
 {
-  //TODO
-  return T();
+  //node to hold current position
+  Node<T>* currentNode=headPtr;
+  
+  // loop until node
+  for (int i=0; i<=position-1; i++)
+  {
+    currentNode=currentNode->getNext();
+  }
+
+  return currentNode;
 }
 
 //sets the entry at position 
