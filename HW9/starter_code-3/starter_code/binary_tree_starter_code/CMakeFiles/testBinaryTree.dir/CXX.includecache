@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/zeke/Desktop/ECE302/ECE-302/HW9/starter_code-3/starter_code/binary_tree_starter_code/BinaryTree.h
+cassert
+-
+TreeException.h
+/home/zeke/Desktop/ECE302/ECE-302/HW9/starter_code-3/starter_code/binary_tree_starter_code/TreeException.h
+BinaryTree.tpp
+/home/zeke/Desktop/ECE302/ECE-302/HW9/starter_code-3/starter_code/binary_tree_starter_code/BinaryTree.tpp
+
+/home/zeke/Desktop/ECE302/ECE-302/HW9/starter_code-3/starter_code/binary_tree_starter_code/BinaryTree.tpp
+
+/home/zeke/Desktop/ECE302/ECE-302/HW9/starter_code-3/starter_code/binary_tree_starter_code/TreeException.h
+exception
+-
+string
+-
+
+/home/zeke/Desktop/ECE302/ECE-302/HW9/starter_code-3/starter_code/binary_tree_starter_code/test.cpp
+iostream
+-
+BinaryTree.h
+/home/zeke/Desktop/ECE302/ECE-302/HW9/starter_code-3/starter_code/binary_tree_starter_code/BinaryTree.h
+

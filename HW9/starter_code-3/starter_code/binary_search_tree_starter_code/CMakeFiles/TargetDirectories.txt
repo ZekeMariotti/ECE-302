@@ -1,0 +1,5 @@
+/home/zeke/Desktop/ECE302/ECE-302/HW9/starter_code-3/starter_code/binary_search_tree_starter_code/CMakeFiles/rebuild_cache.dir
+/home/zeke/Desktop/ECE302/ECE-302/HW9/starter_code-3/starter_code/binary_search_tree_starter_code/CMakeFiles/submission.dir
+/home/zeke/Desktop/ECE302/ECE-302/HW9/starter_code-3/starter_code/binary_search_tree_starter_code/CMakeFiles/edit_cache.dir
+/home/zeke/Desktop/ECE302/ECE-302/HW9/starter_code-3/starter_code/binary_search_tree_starter_code/CMakeFiles/test.dir
+/home/zeke/Desktop/ECE302/ECE-302/HW9/starter_code-3/starter_code/binary_search_tree_starter_code/CMakeFiles/test_bst.dir
