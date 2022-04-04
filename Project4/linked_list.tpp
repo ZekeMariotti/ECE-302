@@ -1,4 +1,5 @@
 #include "linked_list.hpp"
+#include <iostream>
 
 //destructor
 template <typename T>
@@ -62,14 +63,15 @@ bool LinkedList<T>::insert(std::size_t position, const T& item)
 {
   //error check position
   if (position<0 || position>size)
+  {
     return false;
+  }
   
   //check if list is empty
 	if (isEmpty())
 	{
 		//Create new pointer to only node in the list
-		Node<T>* currentNode=new Node<T>;
-		headPtr=currentNode;
+		headPtr=new Node<T>;
 		headPtr->setItem(item);
 		headPtr->setNext(NULL);
 
@@ -79,29 +81,56 @@ bool LinkedList<T>::insert(std::size_t position, const T& item)
 		return true;
 	}
 
+  //list size of one
+  if (size==1)
+  {
+    //node at position
+    Node<T>* currentNode=headPtr;
+
+    //New node
+    Node<T>* newNode=new Node<T>;
+    newNode->setItem(item);
+
+    //check if node should be inserted before or after headPtr
+    if (position==1)
+    {
+      headPtr->setNext(newNode);
+      newNode->setNext(NULL);
+      size++;
+      return true;
+    }
+
+    else
+    {
+      newNode->setNext(headPtr);
+      headPtr=newNode;
+       size++;
+       return true;
+    }
+  }
+
   //pointer to hold current node and previous node
   Node<T>* currentNode=headPtr;
   Node<T>* prevNode=currentNode;
+  
 
   //loop to the node at position
 	for (int i=0; i<position; i++)
 	{
-		if (position!=0)
-    {
-      //currentNode will point to final element
+      //currentNode will point to element at position
       prevNode=currentNode;
       currentNode=currentNode->getNext();
-    }
 	}
 
   //Check for position=0
-  if (position=0)
+  if (position==0)
   {
-    Node<T>* newNode=new Node<T>;
-    newNode->setItem(item);
-    newNode->setNext(currentNode);
-    headPtr=newNode;
-    size++;
+    Node<T>* newNode=headPtr;
+    headPtr=new Node<T>;
+    headPtr->setItem(item);
+    headPtr->setNext(newNode);
+    
+    size++; 
 
     return true;
   }
@@ -124,7 +153,48 @@ bool LinkedList<T>::insert(std::size_t position, const T& item)
 template <typename T>
 bool LinkedList<T>::remove(std::size_t position)
 {
-  //TODO
+  //check for invalid position
+  if(position<0 || position>size-1) 
+    return false;
+
+  //Check if position is 0
+  if(position==0)
+  {
+    headPtr=headPtr->getNext();
+    size--;
+    return true;
+  }
+
+  //Node pointer to hold current node
+  Node<T>* currentNode=headPtr;
+
+  //loop through until position
+  for (int i=0; i<position-1; i++)
+  {
+    currentNode=currentNode->getNext();
+  }
+
+  //create pointer to hold previous node
+  Node<T>* previousNode=currentNode;
+
+  //get position pointer
+  currentNode=currentNode->getNext();
+
+  if (currentNode->getNext()==NULL)
+  {
+    //if the item at position is the last item, make the previousNode point to nothing/NULL
+    previousNode->setNext(NULL);
+  }
+  else
+  {
+    //Remove Node by making previousNode point to the node after the position
+    previousNode->setNext(currentNode->getNext());
+  }
+
+  //decrease size by 1
+  size--;
+
+  //Return True
   return true;
 }
 
@@ -132,7 +202,9 @@ bool LinkedList<T>::remove(std::size_t position)
 template <typename T>
 void LinkedList<T>::clear()
 {
-  //TODO
+  //set headPtr to null, set size to zero
+  headPtr=NULL;
+  size=0;
 }
 
 //returns the entry at position
@@ -142,18 +214,33 @@ T LinkedList<T>::getEntry(std::size_t position) const
   //node to hold current position
   Node<T>* currentNode=headPtr;
   
-  // loop until node
-  for (int i=0; i<=position-1; i++)
+  // loop until node at position
+  for (int i=0; i<position; i++)
   {
     currentNode=currentNode->getNext();
   }
 
-  return currentNode;
+  //return item
+  return currentNode->getItem();
 }
 
 //sets the entry at position 
 template <typename T>
 void LinkedList<T>::setEntry(std::size_t position, const T& newValue)
 {
-  //TODO
+  //check for invalid position
+  if(position<0 || position>size-1)
+    return;
+  
+  //variable to hold currentNode for looping
+  Node<T>* currentNode=headPtr;
+
+  //loop through list until position is reached
+  for(int i=1; i<position; i++)
+  {
+    currentNode=currentNode->getNext();
+  }
+
+  //set item at position
+  currentNode->setItem(newValue);
 }

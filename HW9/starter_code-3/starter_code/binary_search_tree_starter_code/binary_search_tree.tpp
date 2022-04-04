@@ -97,11 +97,21 @@ BinarySearchTree<KeyType, ItemType>::~BinarySearchTree()
     destroy();
 }
 
+ // insert items in order
 template <typename KeyType, typename ItemType>
 bool BinarySearchTree<KeyType, ItemType>::insert(
     const KeyType& key, const ItemType& item)
 {
-    // TODO 
+    KeyType k=key;
+    ItemType I;
+    if (!retrieve(k, I))
+    {
+       
+
+    }
+        
+
+
     return false;
 }
 
@@ -133,21 +143,63 @@ bool BinarySearchTree<KeyType, ItemType>::retrieve(
 template <typename KeyType, typename ItemType>
 bool BinarySearchTree<KeyType, ItemType>::remove(KeyType key)
 {
+    Node<KeyType, ItemType>* curr;
+    Node<KeyType, ItemType>* parent;
+    
     if (isEmpty())
         return false; // empty tree
 
-    // TODO
-
-
     // case one thing in the tree
+    if (root->left==0 && root->right==0)
+    {
+        if (key==root->key)
+        {
+            root=0;
+            return true;
+        }
+        else
+            return false;
+    }
+
+    //use search to get node attached with key
+    search(key, curr, parent);
+
+    //if not in tree, return false
+    if (curr==0)
+        return false;
 
     // case, found deleted item at leaf
+    
+    if (curr->left==0 && curr->right==0)
+    {
+        curr=0;
+    }
 
     // case, item to delete has only a right child
+    if (curr->left==0 && curr->right!=0)
+    {
+        curr->key=curr->right->key;
+        curr->data=curr->right->data;
+        curr->right==0;
+    }
 
     // case, item to delete has only a left child
+    if (curr->left!=0 && curr->right==0)
+    {
+        curr->key=curr->right->key;
+        curr->data=curr->right->data;
+        curr->right==0;
+    }
 
     // case, item to delete has two children
+    if (curr->left!=0 &&  curr->right!=0)
+    {
+        Node<KeyType, ItemType>* in=curr;
+        inorder(in, curr, curr);
+        curr->key=in->key;
+        curr->data=in->data;
+        in=0;
+    }
 
     return false; // default should never get here
 }
@@ -159,6 +211,17 @@ void BinarySearchTree<KeyType, ItemType>::inorder(Node<KeyType, ItemType>* curr,
     // TODO 
     // move right once
     // move left as far as possible
+    if (curr->left==0)
+    {
+        return;
+    }
+
+    if (curr->left!=0)
+    {
+        inorder(curr->left, in, curr);
+    }
+
+    
     
 }
 

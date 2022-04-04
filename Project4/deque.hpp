@@ -21,7 +21,7 @@ public:
   Deque& operator=(const Deque& x);
 
   // isEmpty
-  bool isEmpty();
+  bool isEmpty() const noexcept;
 
   // pushFront
   void pushFront(const T& item);
@@ -30,7 +30,7 @@ public:
   void popFront();
 
   // front
-  T front();
+  T front() const;
 
   // pushBack
   void pushBack(const T& item);
@@ -39,7 +39,7 @@ public:
   void popBack();
 
   // back
-  T back();
+  T back() const;
 
 private:
   LinkedList<T> list;
