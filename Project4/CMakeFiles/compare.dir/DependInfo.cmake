@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/zeke/Desktop/ECE302/ECE-302/Project4/compare.cpp" "/home/zeke/Desktop/ECE302/ECE-302/Project4/CMakeFiles/compare.dir/compare.cpp.o"
+  "/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/compare.cpp" "/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/CMakeFiles/compare.dir/compare.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -15,7 +15,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/zeke/Desktop/ECE302/ECE-302/Project4/lib/CMakeFiles/image.dir/DependInfo.cmake"
+  "/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/lib/CMakeFiles/image.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

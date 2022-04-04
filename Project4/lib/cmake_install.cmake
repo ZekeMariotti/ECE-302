@@ -1,4 +1,4 @@
-# Install script for directory: /home/zeke/Desktop/ECE302/ECE-302/Project4/lib
+# Install script for directory: /home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/lib
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -35,10 +35,5 @@ endif()
 # Is this installation the result of a crosscompile?
 if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
-endif()
-
-# Set default install directory permissions.
-if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/usr/bin/objdump")
 endif()
 

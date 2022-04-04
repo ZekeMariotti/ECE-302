@@ -25,7 +25,11 @@ public:
   // determine if a list is empty
   bool isEmpty();
 
+<<<<<<< HEAD
+  // return current lenght of the list
+=======
   // return current length of the list
+>>>>>>> 345c6e4970cfc67544852adc097d82be2dc74111
   std::size_t getLength();
 
   // insert item at ordered position in the list

@@ -1,21 +1,43 @@
 #include "linked_list.hpp"
 
 template <typename T>
+<<<<<<< HEAD
+LinkedList<T>::LinkedList()
+{
+  //TODO
+}
+=======
 LinkedList<T>::LinkedList() : headPtr(nullptr), itemCount(0)
 {
   
 } //end default constructor 
+>>>>>>> 345c6e4970cfc67544852adc097d82be2dc74111
 
 template <typename T>
 LinkedList<T>::~LinkedList()
 {
+<<<<<<< HEAD
+  //TODO
+}
+=======
   //empty the existing linked list
   clear();
 } // end destructor
+>>>>>>> 345c6e4970cfc67544852adc097d82be2dc74111
 
 template <typename T>
 LinkedList<T>::LinkedList(const LinkedList<T>& x)
 {
+<<<<<<< HEAD
+  //TODO
+}
+
+template <typename T>
+void LinkedList<T>::swap(LinkedList<T>& x, LinkedList<T>& y)
+{
+  //TODO
+}
+=======
   itemCount = x.itemCount;
   Node<T>* origPtr = x.headPtr;
   //check if original is empty, if so make copy empty
@@ -47,10 +69,15 @@ void LinkedList<T>::swap(LinkedList<T>& x, LinkedList<T>& y)
   x = y;
   y = temp;
 } 
+>>>>>>> 345c6e4970cfc67544852adc097d82be2dc74111
 
 template <typename T>
 LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& x)
 {
+<<<<<<< HEAD
+  //TODO
+  return *this;
+=======
     itemCount = x.itemCount;
       Node<T>* origPtr = x.headPtr;
         //check if original is empty, if so make copy empty
@@ -74,23 +101,38 @@ LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& x)
                   } // end while
             } // end if
             return *this;
+>>>>>>> 345c6e4970cfc67544852adc097d82be2dc74111
 }
 
 template <typename T>
 bool LinkedList<T>::isEmpty() const
 {
+<<<<<<< HEAD
+  //TODO
+  return true;
+=======
    return (itemCount == 0);
+>>>>>>> 345c6e4970cfc67544852adc097d82be2dc74111
 }
 
 template <typename T>
 std::size_t LinkedList<T>::getLength() const
 {
+<<<<<<< HEAD
+  //TODO
+  return 0;
+=======
   return itemCount;
+>>>>>>> 345c6e4970cfc67544852adc097d82be2dc74111
 }
 
 template <typename T>
 bool LinkedList<T>::insert(std::size_t position, const T& item)
 {
+<<<<<<< HEAD
+  //TODO
+  return true;
+=======
   bool canInsert = (position >= 1) && (position <= itemCount +1);
     Node<T>* prevPtr = getNodeAt(position - 1);
       
@@ -126,11 +168,16 @@ bool LinkedList<T>::insert(std::size_t position, const T& item)
                   throw(std::range_error("error in range"));
                 } //end if
                 return canInsert; 
+>>>>>>> 345c6e4970cfc67544852adc097d82be2dc74111
 }
 
 template <typename T>
 bool LinkedList<T>::remove(std::size_t position)
 {
+<<<<<<< HEAD
+  //TODO
+  return true;
+=======
   bool canRemove = (position >= 1) && (position <= itemCount);
     if (canRemove) {
       Node<T>* curPtr = nullptr;
@@ -158,19 +205,28 @@ bool LinkedList<T>::remove(std::size_t position)
         throw(std::range_error("error in range"));
         } // end if
         return canRemove; 
+>>>>>>> 345c6e4970cfc67544852adc097d82be2dc74111
 }
 
 template <typename T>
 void LinkedList<T>::clear()
 {
+<<<<<<< HEAD
+  //TODO
+=======
   while (!isEmpty())
       //remove the first entry until isEmpty() returns true
       remove(1); 
+>>>>>>> 345c6e4970cfc67544852adc097d82be2dc74111
 }
 
 template <typename T>
 T LinkedList<T>::getEntry(std::size_t position) const
 {
+<<<<<<< HEAD
+  //TODO
+  return T();
+=======
   //preconditions
     bool canGet = (position >= 1) && (position <= itemCount);
       if (canGet) {
@@ -181,11 +237,16 @@ T LinkedList<T>::getEntry(std::size_t position) const
             throw(std::range_error("error in range"));
           } // end if
            
+>>>>>>> 345c6e4970cfc67544852adc097d82be2dc74111
 }
 
 template <typename T>
 void LinkedList<T>::setEntry(std::size_t position, const T& newValue)
 {
+<<<<<<< HEAD
+  //TODO
+}
+=======
   bool canSet = (position >= 1) && (position <= itemCount +1);
     Node<T>* prevPtr = getNodeAt(position - 1);
       
@@ -221,3 +282,4 @@ Node<T>* LinkedList<T>::getNodeAt(int position) const
       curPtr = curPtr -> getNext();
     return curPtr;
 } //end getNodeAt
+>>>>>>> 345c6e4970cfc67544852adc097d82be2dc74111
