@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/lib/image.cpp" "/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/lib/CMakeFiles/image.dir/image.cpp.o"
-  "/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/lib/lodepng.cpp" "/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/lib/CMakeFiles/image.dir/lodepng.cpp.o"
+  "/home/zeke/Desktop/ECE302/ECE-302/Project4/lib/image.cpp" "/home/zeke/Desktop/ECE302/ECE-302/Project4/lib/CMakeFiles/image.dir/image.cpp.o"
+  "/home/zeke/Desktop/ECE302/ECE-302/Project4/lib/lodepng.cpp" "/home/zeke/Desktop/ECE302/ECE-302/Project4/lib/CMakeFiles/image.dir/lodepng.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

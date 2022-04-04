@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/lib/image.cpp
+/home/zeke/Desktop/ECE302/ECE-302/Project4/lib/image.cpp
 image.h
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/lib/image.h
+/home/zeke/Desktop/ECE302/ECE-302/Project4/lib/image.h
 lodepng.cpp
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/lib/lodepng.cpp
+/home/zeke/Desktop/ECE302/ECE-302/Project4/lib/lodepng.cpp
 
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/lib/image.h
+/home/zeke/Desktop/ECE302/ECE-302/Project4/lib/image.h
 algorithm
 -
 cstdint
@@ -24,9 +24,9 @@ string
 vector
 -
 
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/lib/lodepng.cpp
+/home/zeke/Desktop/ECE302/ECE-302/Project4/lib/lodepng.cpp
 lodepng.h
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/lib/lodepng.h
+/home/zeke/Desktop/ECE302/ECE-302/Project4/lib/lodepng.h
 limits.h
 -
 stdio.h
@@ -34,7 +34,7 @@ stdio.h
 stdlib.h
 -
 
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/lib/lodepng.h
+/home/zeke/Desktop/ECE302/ECE-302/Project4/lib/lodepng.h
 string.h
 -
 vector
@@ -42,9 +42,9 @@ vector
 string
 -
 lodepng.h
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/lib/lodepng.h
+/home/zeke/Desktop/ECE302/ECE-302/Project4/lib/lodepng.h
 iostream
 -
 lodepng.h
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/lib/lodepng.h
+/home/zeke/Desktop/ECE302/ECE-302/Project4/lib/lodepng.h
 

@@ -6,9 +6,21 @@
 
 #IncludeRegexTransform: 
 
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/abstract_deque.hpp
+/home/zeke/Desktop/ECE302/ECE-302/Project4/Node.hpp
+Node.tpp
+/home/zeke/Desktop/ECE302/ECE-302/Project4/Node.tpp
 
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/catch.hpp
+/home/zeke/Desktop/ECE302/ECE-302/Project4/Node.tpp
+Node.hpp
+/home/zeke/Desktop/ECE302/ECE-302/Project4/Node.hpp
+
+/home/zeke/Desktop/ECE302/ECE-302/Project4/abstract_deque.hpp
+
+/home/zeke/Desktop/ECE302/ECE-302/Project4/abstract_list.hpp
+cstdlib
+-
+
+/home/zeke/Desktop/ECE302/ECE-302/Project4/catch.hpp
 sstream
 -
 stdexcept
@@ -182,7 +194,7 @@ algorithm
 map
 -
 Foundation/Foundation.h
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/Foundation/Foundation.h
+/home/zeke/Desktop/ECE302/ECE-302/Project4/Foundation/Foundation.h
 ostream
 -
 stdexcept
@@ -238,16 +250,21 @@ iomanip
 assert.h
 -
 
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/deque.hpp
-abstract_deque.hpp
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/abstract_deque.hpp
-deque.tpp
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/deque.tpp
-
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/deque.tpp
-deque.hpp
-<<<<<<< HEAD
 /home/zeke/Desktop/ECE302/ECE-302/Project4/deque.hpp
+abstract_deque.hpp
+/home/zeke/Desktop/ECE302/ECE-302/Project4/abstract_deque.hpp
+linked_list.hpp
+/home/zeke/Desktop/ECE302/ECE-302/Project4/linked_list.hpp
+stdexcept
+-
+deque.tpp
+/home/zeke/Desktop/ECE302/ECE-302/Project4/deque.tpp
+
+/home/zeke/Desktop/ECE302/ECE-302/Project4/deque.tpp
+deque.hpp
+/home/zeke/Desktop/ECE302/ECE-302/Project4/deque.hpp
+iostream
+-
 
 /home/zeke/Desktop/ECE302/ECE-302/Project4/linked_list.hpp
 abstract_list.hpp
@@ -262,19 +279,12 @@ linked_list.hpp
 /home/zeke/Desktop/ECE302/ECE-302/Project4/linked_list.hpp
 iostream
 -
-=======
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/deque.hpp
->>>>>>> 6855a76bcf57bf4aec00ecaa11ed7af9d5372bce
 
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/test_deque.cpp
+/home/zeke/Desktop/ECE302/ECE-302/Project4/test_deque.cpp
 catch.hpp
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/catch.hpp
+/home/zeke/Desktop/ECE302/ECE-302/Project4/catch.hpp
 deque.hpp
-<<<<<<< HEAD
 /home/zeke/Desktop/ECE302/ECE-302/Project4/deque.hpp
 iostream
 -
-=======
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/deque.hpp
->>>>>>> 6855a76bcf57bf4aec00ecaa11ed7af9d5372bce
 

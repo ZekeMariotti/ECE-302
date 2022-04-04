@@ -6,5 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/zeke/Desktop/ece0302/ECE-302/Project4/p4_starter_code/p4_starter_code/pathfinder.cpp
+/home/zeke/Desktop/ECE302/ECE-302/Project4/pathfinder.cpp
+iostream
+-
 

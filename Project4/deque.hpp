@@ -3,6 +3,7 @@
 
 #include "abstract_deque.hpp"
 #include "linked_list.hpp"
+#include <stdexcept>
 
 template <typename T>
 class Deque: public AbstractDeque<T>{
@@ -43,6 +44,7 @@ public:
 
 private:
   LinkedList<T> list;
+  int size;
   
 };
 

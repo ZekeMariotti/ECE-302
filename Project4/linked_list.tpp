@@ -24,21 +24,87 @@ LinkedList<T>::~LinkedList()
 template <typename T>
 LinkedList<T>::LinkedList(const LinkedList<T>& x)
 {
-  //TODO
+  //if x is empty, make calling object empty
+  if (x.isEmpty())
+  {
+    headPtr=NULL;
+    return;
+  }
+
+  //create new pointers
+  headPtr=new Node<T>;
+  Node<T>* newNode;
+
+  //Create pointer to loop through list and to copy data
+  Node<T>* loopx=x.headPtr;
+  Node<T>* copy=headPtr;
+
+  //Copy data by looping through list x
+  for(int i=0; i<x.getLength(); i++)
+  {
+     //Set item of copy node to item of loop node
+     copy->setItem(loopx->getItem());
+
+     //Node to hold pointer to new node
+     newNode=new Node<T>;
+
+     //increment copy and loop to their next nodes
+     copy->setNext(newNode);
+     loopx=loopx->getNext();
+     copy=copy->getNext();
+  }
+  
+  //copy size
+  size=x.size;
 }
 
 //swaps two lists
 template <typename T>
 void LinkedList<T>::swap(LinkedList<T>& x, LinkedList<T>& y)
 {
-  //TODO
+  //Create new pointer to hold data 
+  Node<T>* newStart=x.headPtr;
+  int xsize=x.size;
+
+  //switch start pointers 
+  x.headPtr=y.headPtr;
+  x.size=y.size;
+  
+  //Switch y pointers to new pointers
+  y.headPtr=newStart;
+  y.size=xsize;
 }
 
 //copy assignment
 template <typename T>
 LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& x)
 {
-  //TODO
+  //create new pointers
+  headPtr=new Node<T>;
+
+  //Create pointer to loop through list and to copy data
+  Node<T>* loopx=x.headPtr;
+  Node<T>* copy=headPtr;
+
+  //Copy data by looping through list x
+  for(int i=0; i<x.getLength(); i++)
+  {
+     //Set item of copy node to item of loop node
+     copy->setItem(loopx->getItem());
+
+     //Node to hold pointer to new node
+     Node<T>* newNode=new Node<T>;
+
+     //increment copy and loop to their next nodes
+     copy->setNext(newNode);
+     loopx=loopx->getNext();
+     copy=copy->getNext();
+  }
+
+  //copy size
+  size=x.size;
+
+  //return pointer to LinkedList object
   return *this;
 }
 
