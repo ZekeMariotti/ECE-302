@@ -7,7 +7,7 @@ using std::endl;
 
 void indexToij(int index, int ij[], Image<Pixel> img);
 int ijToIndex(int ij[], Image<Pixel> img);
-//void solution(int sn, int s_next[]);
+bool solution(int sn, int s_next[], Image<Pixel>& inputImg, std::string output_file);
 
 
 int main(int argc, char *argv[])
@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
       }
     }
   }
-
+cout << startPos[0] << ", " << startPos[1] << endl;
   //error check multiple red pixels
   if (redCount>1)
   {
@@ -107,11 +107,11 @@ int main(int argc, char *argv[])
     sn1=s-inputImg.width(); //sn1=s-one row
     sn2=s+inputImg.width(); //sn2=s+one row
     sn3=s-1; //sn3=s-one column
-    sn3=s+1; //sn4=s+one column
+    sn4=s+1; //sn4=s+one column
     indexToij(sn1, s_next1, inputImg);
     indexToij(sn2, s_next2, inputImg);
     indexToij(sn3, s_next3, inputImg);
-    indexToij(sn4, s_next41, inputImg);
+    indexToij(sn4, s_next4, inputImg);
 
     //go through each next state
 
@@ -119,17 +119,56 @@ int main(int argc, char *argv[])
     if (!frontier.contains(sn1) && !explored.contains(sn1) && inputImg(s_next1[0], s_next1[1])!=BLACK)
     {
       //if next state is goal state
-      if(s_next1[0]==0 || s_next1[1]==0)
+      if(solution(sn1, s_next1, inputImg, output_file))
       {
-        //solution found***
-        cout << s_next1[0] << " " << s_next1[1] << endl;
-
         //return success
         return EXIT_SUCCESS;
       }
 
       //insert sn into frontier
       frontier.pushBack(sn1);
+    }
+
+    //check that next state isn't in frontier or explored, and that its not a black pixel
+    if (!frontier.contains(sn2) && !explored.contains(sn2) && inputImg(s_next2[0], s_next2[1])!=BLACK)
+    {
+      //if next state is goal state
+      if(solution(sn2, s_next2, inputImg, output_file))
+      {
+        //return success
+        return EXIT_SUCCESS;
+      }
+
+      //insert sn into frontier
+      frontier.pushBack(sn2);
+    }
+
+    //check that next state isn't in frontier or explored, and that its not a black pixel
+    if (!frontier.contains(sn3) && !explored.contains(sn3) && inputImg(s_next3[0], s_next3[1])!=BLACK)
+    {
+      //if next state is goal state
+      if(solution(sn3, s_next3, inputImg, output_file))
+      {
+        //return success
+        return EXIT_SUCCESS;
+      }
+
+      //insert sn into frontier
+      frontier.pushBack(sn3);
+    }
+
+    //check that next state isn't in frontier or explored, and that its not a black pixel
+    if (!frontier.contains(sn4) && !explored.contains(sn4) && inputImg(s_next4[0], s_next4[1])!=BLACK)
+    {
+      //if next state is goal state
+      if(solution(sn4, s_next4, inputImg, output_file))
+      {
+        //return success
+        return EXIT_SUCCESS;
+      }
+
+      //insert sn into frontier
+      frontier.pushBack(sn4);
     }
 
     //break;
@@ -154,16 +193,25 @@ int ijToIndex(int ij[], Image<Pixel> img)
   return (ij[0]*img.width()+ij[1]);
 }
 
-/*//checks if a pixel location is a solution
-bool solution(int sn, int s_next[])
+//checks if a pixel location is a solution
+bool solution(int sn, int s_next[], Image<Pixel>& inputImg, std::string output_file)
 {
   // if next state is goal state
   if (s_next[0] == 0 || s_next[1] == 0)
   {
     // solution found***
-    cout << s_next[0] << " " << s_next[1] << endl;
+    cout << "Solution Found: " << s_next[0] << " " << s_next[1] << endl;
+
+    //set solution pixel to green
+    inputImg(s_next[0], s_next[1])=GREEN;
+
+    //create new image
+    writeToFile(inputImg, output_file);
 
     // return success
-    return EXIT_SUCCESS;
+    return true;
   }
-}*/
+
+  //if not solution return false
+  return false;
+}
