@@ -45,8 +45,10 @@ int main(int argc, char *argv[])
       //error check for pixels that aren't black, white, or red
       if (inputImg(i, j)!=RED && inputImg(i, j)!=WHITE && inputImg(i, j)!=BLACK)
       {
-          //Invalid color in image*
-          
+          //Invalid color in image
+          cout << "Error: image contains pixel that is not red, white, or black." << endl;
+
+          return EXIT_FAILURE;          
       }
 
       //pixel at i, j is red
@@ -59,26 +61,35 @@ int main(int argc, char *argv[])
       }
     }
   }
-cout << startPos[0] << ", " << startPos[1] << endl;
+
+  /////////////////////////////////////////////////////////////////////////
+  //cout starting red pixel ***** debugging *****
+  cout << "Start Position: " << startPos[0] << ", " << startPos[1] << endl;
+  /////////////////////////////////////////////////////////////////////////
+
   //error check multiple red pixels
   if (redCount>1)
   {
-    //More than one red pixel*
+    //More than one red pixel
+    cout << "Error: Input maze has more than one red pixel." << endl;
 
+    return EXIT_FAILURE;
   }
 
   //error check no red
   if (redCount==0)
   {
-    //Less than one pixel*
+    //Less than one pixel
+    cout << "Error: No red pixel found in input maze" << endl;
 
+    return EXIT_FAILURE;
   }
 
   //Check if start is a solution
-  if(startPos[0]==0 || startPos[1]==0)
+  if(solution(s, startPos, inputImg, output_file))
   {
     //start position is a solution*
-
+    return EXIT_SUCCESS;
   }
 
   // next state variables
@@ -91,8 +102,12 @@ cout << startPos[0] << ", " << startPos[1] << endl;
     //check if frontier is empty
     if (frontier.isEmpty())
     {
-      //return failure*
-      cout << "empty frontier";
+      //return failure
+      cout << "No Solution Found" << endl;
+
+      //write inputImg to file with no changes
+      writeToFile(inputImg, output_file);
+
       return EXIT_FAILURE;
     }
 
@@ -113,8 +128,7 @@ cout << startPos[0] << ", " << startPos[1] << endl;
     indexToij(sn3, s_next3, inputImg);
     indexToij(sn4, s_next4, inputImg);
 
-    //go through each next state
-
+    // Check each next state, add to frontier if not a solution and an unexplored whitespace
     //check that next state isn't in frontier or explored, and that its not a black pixel
     if (!frontier.contains(sn1) && !explored.contains(sn1) && inputImg(s_next1[0], s_next1[1])!=BLACK)
     {
@@ -170,17 +184,11 @@ cout << startPos[0] << ", " << startPos[1] << endl;
       //insert sn into frontier
       frontier.pushBack(sn4);
     }
-
-    //break;
   }
-
-
-
-  
 }
 
 
-//converts an index for an image to i and j
+//converts a vector index for an image to i and j
 void indexToij(int index, int ij[], Image<Pixel> img)
 {
   ij[0]=index/img.width();
@@ -197,10 +205,10 @@ int ijToIndex(int ij[], Image<Pixel> img)
 bool solution(int sn, int s_next[], Image<Pixel>& inputImg, std::string output_file)
 {
   // if next state is goal state
-  if (s_next[0] == 0 || s_next[1] == 0)
+  if (s_next[0] == 0 || s_next[1] == 0 || s_next[0]==inputImg.width()-1 || s_next[1]==inputImg.height()-1)
   {
     // solution found***
-    cout << "Solution Found: " << s_next[0] << " " << s_next[1] << endl;
+    cout << "Solution Found: " << s_next[0] << ", " << s_next[1] << endl;
 
     //set solution pixel to green
     inputImg(s_next[0], s_next[1])=GREEN;
