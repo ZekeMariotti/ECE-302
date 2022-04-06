@@ -105,3 +105,10 @@ T Deque<T>::back() const
 
     return list.getEntry(0);
 }
+
+//checks if an item is contained in the deque
+template <typename T>
+bool Deque<T>::contains(const T& item)
+{
+    return list.contains(item);
+}

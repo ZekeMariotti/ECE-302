@@ -45,6 +45,9 @@ public:
   // set the value of the item at position using 1-based indexing
   void setEntry(std::size_t position, const T& newValue);
 
+  //checks if an item is contained in the list
+  bool contains(const T& item);
+
 private:
 
   Node<T>* headPtr; // Pointer to first node

@@ -310,3 +310,46 @@ void LinkedList<T>::setEntry(std::size_t position, const T& newValue)
   //set item at position
   currentNode->setItem(newValue);
 }
+
+//checks if an item is contained in the list
+template <typename T>
+bool LinkedList<T>::contains(const T& item)
+{
+  //test if empty
+  if (isEmpty())
+  {
+    return false;
+  }
+
+  //test for size of one
+  if (size==1)
+  {
+    if (headPtr->getItem()==item)
+    {
+      return true;
+    }
+    
+    else
+    {
+      return false;
+    }
+  }
+  
+  //node to loop through list
+  Node<T>* currentNode=headPtr;
+  
+  //loop through list, return true if item found, else false
+  for (int i=0; i<=size-1; i++)
+  {
+    if (currentNode->getItem()==item)
+    {
+      return true;
+    }
+
+    //increment currentNode
+    currentNode=currentNode->getNext();
+  }
+
+  //if this line is reached, return false
+  return false;
+}

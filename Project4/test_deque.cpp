@@ -11,8 +11,14 @@ using std::endl;
 TEST_CASE( "Deque Tests", "[deque]" ) {
     Deque<int> D1;
 
-    //Test isEmpty
+    //Test empty deque
     REQUIRE(D1.isEmpty());
+    REQUIRE(D1.contains(5)==false);
+
+    //Testing deque size of one
+    D1.pushFront(0);
+    REQUIRE(D1.contains(0));
+    D1.popFront();
 
    //Push to deque [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     for (int i=1; i<=5; i++)
@@ -23,6 +29,14 @@ TEST_CASE( "Deque Tests", "[deque]" ) {
     for (int i=6; i<=10; i++)
     {
     D1.pushFront(i);
+    }
+
+    //test contains
+    for (int i=1; i<=10; i++)
+    {
+        REQUIRE(D1.contains(i));
+        REQUIRE(!D1.contains(0));
+        REQUIRE(!D1.contains(11));
     }
 
     //test copy assignment and copy constructor

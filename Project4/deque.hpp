@@ -42,6 +42,9 @@ public:
   // back
   T back() const;
 
+  // contains
+  bool contains(const T& item);
+
 private:
   LinkedList<T> list;
   int size;
