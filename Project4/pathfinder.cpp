@@ -37,10 +37,11 @@ int main(int argc, char *argv[])
   int s;
   int redCount=0; //used to error check number of red pixels
   
-  //Search for red pixel
-  for (int i=0; i<=inputImg.width()-1; i++)
+  //Search for red pixel (indexing using original image.cpp file with i=column, j=row)
+  //The for loop flips i and j to correctly have i represent the row, and j represent the column
+  for (int j=0; j<=inputImg.width()-1; j++)
   {
-    for (int j=0; j<=inputImg.height()-1; j++)
+    for (int i=0; i<=inputImg.height()-1; i++)
     {
       //error check for pixels that aren't black, white, or red
       if (inputImg(i, j)!=RED && inputImg(i, j)!=WHITE && inputImg(i, j)!=BLACK)
@@ -64,7 +65,7 @@ int main(int argc, char *argv[])
 
   /////////////////////////////////////////////////////////////////////////
   //cout starting red pixel ***** debugging *****
-  cout << "Start Position: " << startPos[0] << ", " << startPos[1] << endl;
+  //cout << "Start Position: " << startPos[0] << ", " << startPos[1] << endl;
   /////////////////////////////////////////////////////////////////////////
 
   //error check multiple red pixels
